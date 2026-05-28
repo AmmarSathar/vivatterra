@@ -1,0 +1,30 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Navigation</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  body { padding: 0; background: var(--vt-paper); }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 28px; border-bottom: 1px solid var(--line-soft); background: var(--vt-paper); }
+  .brand { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 22px; color: var(--vt-forest); letter-spacing: -0.01em; }
+  .brand .tt { font-weight: 700; letter-spacing: -0.03em; }
+  .links { display: flex; gap: 24px; }
+  .links a { font-size: 13px; color: var(--vt-ink-900); text-decoration: none; font-weight: 700; transition: color 160ms; }
+  .links a:hover { color: var(--vt-clay-700); }
+  .links a.active { color: var(--vt-forest); }
+  .cta { font-family: var(--font-sans); font-weight: 700; font-size: 13px; padding: 9px 16px; background: var(--vt-forest); color: var(--vt-cream); border: 0; border-radius: 8px; cursor: pointer; }
+  .footer-spacer { padding: 22px 28px 0; }
+  .label { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); letter-spacing: 0.04em; text-transform: uppercase; }
+</style></head>
+<body>
+  <div class="footer-spacer"><div class="label">Top navigation · 72px tall · sticky · hairline border on scroll</div></div>
+  <div style="height: 16px"></div>
+  <div class="nav">
+    <div class="brand">viva<span class="tt">TT</span>erra</div>
+    <div class="links">
+      <a class="active">The model</a>
+      <a>Producers</a>
+      <a>Products</a>
+      <a>Journal</a>
+      <a>About</a>
+    </div>
+    <button class="cta">Get involved</button>
+  </div>
+</body></html>

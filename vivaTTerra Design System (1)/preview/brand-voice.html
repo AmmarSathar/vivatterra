@@ -1,0 +1,30 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Voice</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  body { padding: 24px 28px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .col h4 { font-family: var(--font-sans); font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin: 0 0 10px; }
+  .col.yes h4 { color: var(--vt-forest); }
+  .col.no h4 { color: var(--vt-clay-700); }
+  .line { font-size: 13px; line-height: 1.5; color: var(--vt-ink-900); padding: 8px 12px; border-radius: 6px; margin-bottom: 6px; }
+  .yes .line { background: var(--vt-sage-100); }
+  .no  .line { background: var(--vt-clay-100); color: var(--vt-stone-700); }
+  .no  .line { text-decoration: line-through; text-decoration-color: var(--vt-clay); text-decoration-thickness: 1px; }
+</style></head>
+<body>
+  <div class="card-eyebrow">Voice · how the brand sounds</div>
+  <div class="grid">
+    <div class="col yes">
+      <h4>vivaTTerra writes this</h4>
+      <div class="line">Healthy ecosystems produce higher-quality, more resilient outputs.</div>
+      <div class="line">Capital is framed as enabling infrastructure.</div>
+      <div class="line">Tacana 1 · Bolivia · 2024 harvest</div>
+    </div>
+    <div class="col no">
+      <h4>Never this</h4>
+      <div class="line">Save the planet, one bowl at a time! 🌱</div>
+      <div class="line">Guilt-free açaí your tastebuds will love.</div>
+      <div class="line">Eco-amazing superfood. Pure. Real. Honest.</div>
+    </div>
+  </div>
+</body></html>

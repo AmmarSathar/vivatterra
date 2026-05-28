@@ -1,0 +1,313 @@
+/* =============================================================
+   vivaTTerra — Foundations
+   Colors + typography tokens for the brand.
+   Single typeface system: Lato carries display, headings, body,
+   eyebrows, and UI labels. Source Serif 4 stays as the editorial
+   italic accent for pull-quotes only.
+   Import this file at the top of any design / prototype.
+   ============================================================= */
+
+/* Source Serif 4 — editorial italic accent (CDN; not part of the brand kit) */
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&display=swap');
+
+/* Lato — the brand sans. Carries everything. */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,400;1,700&display=swap');
+
+/* Poppins — the wordmark face only. Matches the logo file. Apply via the .wordmark class. */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+:root {
+  /* ---------- BRAND COLORS ---------- */
+  /* Primary */
+  --vt-forest:        #4B6040; /* Deep canopy green — wordmark, primary actions, headings */
+  --vt-sage:          #8CA47A; /* Soft sage — supporting accents, lines, hover surfaces */
+  --vt-cream:         #F2E9D6; /* Warm parchment — page backgrounds, large surfaces */
+
+  /* Secondary */
+  --vt-clay:          #BB734A; /* Terracotta — harvest, warmth, occasional emphasis */
+  --vt-ink:           #2F2840; /* Deep aubergine — text on light, footer surfaces */
+
+  /* ---------- EXTENDED PALETTE (derived) ---------- */
+  --vt-forest-900:    #2E3B27;
+  --vt-forest-700:    #3B4C33;
+  --vt-forest-600:    #4B6040; /* = vt-forest */
+  --vt-forest-500:    #5B7551;
+  --vt-forest-300:    #A6B89A;
+  --vt-forest-100:    #DDE5D5;
+
+  --vt-sage-700:      #6B8259;
+  --vt-sage-500:      #8CA47A; /* = vt-sage */
+  --vt-sage-300:      #B6C7A8;
+  --vt-sage-100:      #E2EAD9;
+
+  --vt-cream-200:     #FAF4E5;
+  --vt-cream-300:     #F2E9D6; /* = vt-cream */
+  --vt-cream-500:     #E3D6B8;
+  --vt-cream-700:     #C9B98F;
+
+  --vt-clay-700:      #934F2E;
+  --vt-clay-500:      #BB734A; /* = vt-clay */
+  --vt-clay-300:      #D9A284;
+  --vt-clay-100:      #F2DAC8;
+
+  --vt-ink-900:       #1B1729;
+  --vt-ink-700:       #2F2840; /* = vt-ink */
+  --vt-ink-500:       #4B4361;
+  --vt-ink-300:       #8B83A0;
+
+  /* Neutrals (warm-tinted off-whites + grays) */
+  --vt-paper:         #FBF7EE;
+  --vt-bone:          #F5EFE0;
+  --vt-stone-100:     #ECE5D4;
+  --vt-stone-300:     #C9C1AE;
+  --vt-stone-500:     #8E876F;
+  --vt-stone-700:     #5C5746;
+  --vt-stone-900:     #2A2820;
+
+  /* ---------- SEMANTIC: SURFACES ---------- */
+  --bg:               var(--vt-paper);        /* page background */
+  --bg-alt:           var(--vt-cream);        /* alt sections, cards on paper */
+  --bg-deep:          var(--vt-forest);       /* full-bleed dark, hero, footer */
+  --bg-deeper:        var(--vt-ink);          /* highest-contrast dark */
+  --surface:          #FFFFFF;                /* cards on bg */
+  --surface-sunken:   var(--vt-bone);         /* inputs, recessed wells */
+
+  /* ---------- SEMANTIC: FOREGROUND ---------- */
+  --fg-1:             var(--vt-ink-900);      /* primary text on light */
+  --fg-2:             var(--vt-stone-700);    /* secondary text */
+  --fg-3:             var(--vt-stone-500);    /* tertiary / metadata */
+  --fg-muted:         var(--vt-stone-300);    /* hint, placeholder */
+  --fg-on-deep:       var(--vt-cream);        /* text on forest */
+  --fg-on-deep-2:     var(--vt-sage-300);     /* secondary text on forest */
+
+  /* ---------- SEMANTIC: ACCENTS ---------- */
+  --accent:           var(--vt-forest);
+  --accent-soft:      var(--vt-sage);
+  --accent-warm:      var(--vt-clay);
+  --link:             var(--vt-forest-700);
+  --link-hover:       var(--vt-clay-700);
+
+  /* ---------- BORDERS / LINES ---------- */
+  --line-soft:        rgba(75, 96, 64, 0.12);
+  --line:             rgba(75, 96, 64, 0.22);
+  --line-strong:      rgba(75, 96, 64, 0.38);
+  --line-on-deep:     rgba(242, 233, 214, 0.18);
+
+  /* ---------- STATE ---------- */
+  --success:          #4B6040;
+  --warning:          #BB734A;
+  --danger:           #8C3A2E;
+  --info:             #4F6A88;
+
+  /* ---------- TYPE ---------- */
+  /* Lato is the single brand sans — used for display, headings, body, UI. */
+  --font-sans:        'Lato', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-body:        var(--font-sans);
+  --font-display:     var(--font-sans);
+  /* Poppins is reserved for the wordmark only — it matches the logo file. */
+  --font-wordmark:    'Poppins', 'Lato', ui-sans-serif, system-ui, sans-serif;
+  --font-serif:       'Source Serif 4', 'Source Serif Pro', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+  --font-mono:        ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Lato ships these weights: 100 · 300 · 400 · 700 · 900.
+     The system relies on 300 (display), 400 (body / H1), 700 (H2-H4, buttons, emphasis). */
+  --fw-light:         300;
+  --fw-regular:       400;
+  --fw-medium:        700;   /* Lato has no 500 — promote to bold */
+  --fw-semibold:      700;   /* Lato has no 600 — promote to bold */
+  --fw-bold:          700;
+  --fw-black:         900;
+
+  /* ---------- TYPE SCALE (fluid-ish) ---------- */
+  --fs-display-xl:    clamp(56px, 8vw, 112px);
+  --fs-display-lg:    clamp(44px, 6vw, 80px);
+  --fs-display:       clamp(36px, 4.5vw, 56px);
+  --fs-h1:            clamp(32px, 3.6vw, 44px);
+  --fs-h2:            clamp(26px, 2.6vw, 34px);
+  --fs-h3:            22px;
+  --fs-h4:            18px;
+  --fs-body-lg:       18px;
+  --fs-body:          16px;
+  --fs-body-sm:       14px;
+  --fs-caption:       12px;
+  --fs-eyebrow:       12px;
+
+  --lh-tight:         1.05;
+  --lh-snug:          1.2;
+  --lh-base:          1.55;
+  --lh-loose:         1.75;
+
+  --tracking-tight:   -0.02em;
+  --tracking-base:    0;
+  --tracking-wide:    0.08em;
+  --tracking-eyebrow: 0.18em;
+
+  /* ---------- SPACING ---------- */
+  --space-0:  0;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* ---------- RADII ---------- */
+  --r-xs:   2px;
+  --r-sm:   4px;
+  --r-md:   8px;
+  --r-lg:   14px;
+  --r-xl:   22px;
+  --r-2xl:  32px;
+  --r-pill: 999px;
+
+  /* ---------- SHADOWS ---------- */
+  --shadow-xs:    0 1px 2px rgba(47, 40, 64, 0.06);
+  --shadow-sm:    0 2px 6px rgba(47, 40, 64, 0.06), 0 1px 2px rgba(47, 40, 64, 0.04);
+  --shadow-md:    0 8px 20px -8px rgba(47, 40, 64, 0.12), 0 2px 6px rgba(47, 40, 64, 0.06);
+  --shadow-lg:    0 24px 48px -16px rgba(47, 40, 64, 0.18), 0 4px 10px rgba(47, 40, 64, 0.06);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -1px 0 rgba(75, 96, 64, 0.06);
+
+  /* ---------- MOTION ---------- */
+  --ease-out-soft:    cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-instant:      80ms;
+  --dur-fast:         160ms;
+  --dur-base:         240ms;
+  --dur-slow:         400ms;
+  --dur-page:         600ms;
+
+  /* ---------- WORDMARK ---------- */
+  /* Negative letter-spacing between the two T's so their crossbars overlap
+     into one continuous "grafted" bar. Tuned for Poppins Regular (the logo face). */
+  --wm-tt-graft:      -0.30em;
+}
+
+/* =============================================================
+   ELEMENT DEFAULTS — opinionated, drop-in.
+   ============================================================= */
+
+html, body {
+  background: var(--bg);
+  color: var(--fg-1);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-base);
+  font-weight: var(--fw-regular);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
+  font-family: var(--font-sans);
+  color: var(--fg-1);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--lh-snug);
+  text-wrap: balance;
+  margin: 0 0 var(--space-4);
+}
+
+h1, .h1 { font-size: var(--fs-h1); font-weight: var(--fw-regular); }
+h2, .h2 { font-size: var(--fs-h2); font-weight: var(--fw-bold);    }
+h3, .h3 { font-size: var(--fs-h3); font-weight: var(--fw-bold);    }
+h4, .h4 { font-size: var(--fs-h4); font-weight: var(--fw-bold); letter-spacing: 0; }
+
+.display-xl, .display-lg, .display {
+  font-family: var(--font-display);
+  font-weight: var(--fw-regular);   /* Lato Regular at display sizes — confident, not delicate */
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--lh-tight);
+  color: var(--fg-1);
+  text-wrap: balance;
+  margin: 0 0 var(--space-6);
+}
+.display-xl { font-size: var(--fs-display-xl); }
+.display-lg { font-size: var(--fs-display-lg); }
+.display    { font-size: var(--fs-display); }
+
+.editorial {
+  font-family: var(--font-serif);
+  font-weight: var(--fw-regular);
+  font-style: italic;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--vt-forest);
+}
+
+p, .p {
+  margin: 0 0 var(--space-4);
+  color: var(--fg-1);
+  font-family: var(--font-body);
+  text-wrap: pretty;
+  max-width: 68ch;
+}
+
+.lead {
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-loose);
+  color: var(--fg-2);
+  font-family: var(--font-body);
+  font-weight: var(--fw-regular);
+  max-width: 60ch;
+}
+
+small, .caption {
+  font-size: var(--fs-caption);
+  color: var(--fg-3);
+  letter-spacing: 0.02em;
+}
+
+a {
+  color: var(--link);
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+  transition: color var(--dur-fast) var(--ease-out-soft);
+}
+a:hover { color: var(--link-hover); }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: var(--space-8) 0;
+}
+
+::selection { background: var(--vt-sage-300); color: var(--vt-ink-900); }
+
+/* =============================================================
+   WORDMARK — the brand name as it appears in the logo file.
+   Apply the .wordmark class to any element that should render as
+   the brand mark (header brand, footer brand, hero hero copy, etc).
+   Inside it, wrap the TT pair with .wm-tt (or include wordmark.js
+   to auto-wrap). Both layers compose:
+     <span class="wordmark">viva<span class="wm-tt">TT</span>erra</span>
+   ============================================================= */
+.wordmark {
+  font-family: var(--font-wordmark);
+  font-weight: 400;              /* match the logo: uniform stroke across all letters */
+  letter-spacing: -0.01em;       /* match the logo's mostly-neutral tracking */
+  font-feature-settings: "kern" on;
+}
+
+.wm-tt {
+  display: inline-block;
+  letter-spacing: var(--wm-tt-graft);
+  margin-right: calc(-1 * var(--wm-tt-graft));
+  font-kerning: none;
+  font-feature-settings: "kern" off;
+  /* No font-size override — the TT sits at Poppins's natural cap-height,
+     which is already taller than the surrounding x-height. No weight override
+     either — the TT inherits the parent's weight so the grafted crossbar reads
+     as one continuous stroke, exactly like the logo file. */
+}

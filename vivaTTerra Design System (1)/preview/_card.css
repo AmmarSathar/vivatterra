@@ -1,0 +1,39 @@
+/* Shared base for preview cards. Loaded from each card HTML. */
+@import url('../colors_and_type.css');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--vt-paper);
+  color: var(--fg-1);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  padding: 28px 32px;
+  box-sizing: border-box;
+  width: 700px;
+}
+
+.card-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--vt-stone-500);
+  font-weight: 500;
+  margin: 0 0 14px;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

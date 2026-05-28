@@ -1,0 +1,30 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Primary Palette</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  body { padding: 24px 28px; }
+  .swatches { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .sw { border-radius: 10px; padding: 18px 16px; height: 168px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: var(--shadow-xs); }
+  .sw .name { font-size: 14px; font-weight: 700; letter-spacing: -0.01em; }
+  .sw .role { font-size: 11px; opacity: 0.78; line-height: 1.35; max-width: 18ch; }
+  .sw .meta { display: flex; justify-content: space-between; font-size: 10px; font-family: var(--font-mono); letter-spacing: 0.04em; opacity: 0.78; }
+  .forest { background: var(--vt-forest); color: var(--vt-cream); }
+  .sage { background: var(--vt-sage); color: var(--vt-ink-900); }
+  .cream { background: var(--vt-cream); color: var(--vt-ink-900); border: 1px solid var(--line-soft); }
+</style></head>
+<body>
+  <div class="card-eyebrow">Primary palette · 3 colors carry the brand</div>
+  <div class="swatches">
+    <div class="sw forest">
+      <div><div class="name">Forest</div><div class="role">Wordmark, headings, primary actions</div></div>
+      <div class="meta"><span>--vt-forest</span><span>#4B6040</span></div>
+    </div>
+    <div class="sw sage">
+      <div><div class="name">Sage</div><div class="role">Supporting accents, soft surfaces, lines</div></div>
+      <div class="meta"><span>--vt-sage</span><span>#8CA47A</span></div>
+    </div>
+    <div class="sw cream">
+      <div><div class="name">Cream</div><div class="role">Page background, large warm surfaces</div></div>
+      <div class="meta"><span>--vt-cream</span><span>#F2E9D6</span></div>
+    </div>
+  </div>
+</body></html>

@@ -1,0 +1,35 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Cards</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  body { padding: 24px 28px; background: var(--vt-cream); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .card { background: #fff; border-radius: 14px; padding: 20px; box-shadow: 0 2px 6px rgba(47, 40, 64, 0.06), 0 1px 2px rgba(47, 40, 64, 0.04); }
+  .card .eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--vt-forest); font-weight: 700; margin-bottom: 10px; }
+  .card h3 { margin: 0 0 8px; font-size: 18px; font-weight: 700; color: var(--vt-ink-900); letter-spacing: -0.01em; }
+  .card p { margin: 0; font-size: 13px; line-height: 1.55; color: var(--vt-stone-700); }
+  .card .meta { font-size: 11px; color: var(--vt-stone-500); margin-top: 12px; letter-spacing: 0.02em; }
+  .product { padding: 0; overflow: hidden; }
+  .product .img { background: linear-gradient(135deg, var(--vt-clay) 0%, var(--vt-clay-700) 100%); height: 110px; display: flex; align-items: center; justify-content: center; color: var(--vt-cream); font-family: 'Source Serif 4', serif; font-style: italic; font-size: 14px; opacity: 0.92; }
+  .product .body { padding: 14px 16px; }
+  .product h3 { margin-bottom: 4px; font-size: 16px; }
+  .product .meta { margin-top: 8px; }
+</style></head>
+<body>
+  <div class="card-eyebrow">Cards · white surface, 14px radius, soft shadow, no border</div>
+  <div class="grid">
+    <div class="card">
+      <div class="eyebrow">Section 3.1</div>
+      <h3>Value-added supply chains at origin</h3>
+      <p>Sourced from ecologically rich agroforestry systems with local processing and transformation.</p>
+      <div class="meta">Read more · Section 3.1</div>
+    </div>
+    <div class="card product">
+      <div class="img">photo · açaí harvest</div>
+      <div class="body">
+        <h3>Freeze-dried açaí powder</h3>
+        <p>Single-origin, agroforestry-sourced, freeze-dried at origin.</p>
+        <div class="meta">Tacana 1 · Bolivia · 2024</div>
+      </div>
+    </div>
+  </div>
+</body></html>

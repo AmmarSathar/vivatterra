@@ -1,0 +1,27 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Logo on surfaces</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  body { padding: 22px 28px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .tile { aspect-ratio: 1.4 / 1; border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 18px; }
+  .word { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 26px; letter-spacing: -0.02em; line-height: 1; }
+  .word .tt { font-weight: 700; letter-spacing: -0.04em; }
+  .t-cream { background: var(--vt-cream); } .t-cream .word { color: var(--vt-forest); }
+  .t-paper { background: var(--vt-paper); border: 1px solid var(--line-soft); } .t-paper .word { color: var(--vt-forest); }
+  .t-forest { background: var(--vt-forest); } .t-forest .word { color: var(--vt-cream); }
+  .t-ink { background: var(--vt-ink); } .t-ink .word { color: var(--vt-cream); }
+  .t-sage { background: var(--vt-sage); } .t-sage .word { color: var(--vt-ink-900); }
+  .t-clay { background: var(--vt-clay); } .t-clay .word { color: var(--vt-cream); }
+  .lbl { font-family: var(--font-mono); font-size: 9px; color: var(--vt-stone-500); margin-top: 6px; text-align: center; letter-spacing: 0.04em; }
+</style></head>
+<body>
+  <div class="card-eyebrow">Wordmark on approved surfaces</div>
+  <div class="grid">
+    <div><div class="tile t-cream"><span class="word">viva<span class="tt">TT</span>erra</span></div><div class="lbl">cream (primary)</div></div>
+    <div><div class="tile t-paper"><span class="word">viva<span class="tt">TT</span>erra</span></div><div class="lbl">paper</div></div>
+    <div><div class="tile t-forest"><span class="word">viva<span class="tt">TT</span>erra</span></div><div class="lbl">forest reversed</div></div>
+    <div><div class="tile t-ink"><span class="word">viva<span class="tt">TT</span>erra</span></div><div class="lbl">ink reversed</div></div>
+    <div><div class="tile t-sage"><span class="word">viva<span class="tt">TT</span>erra</span></div><div class="lbl">sage</div></div>
+    <div><div class="tile t-clay"><span class="word">viva<span class="tt">TT</span>erra</span></div><div class="lbl">clay (sparingly)</div></div>
+  </div>
+</body></html>

@@ -1,0 +1,285 @@
+/* =============================================================
+   vivaTTerra — Foundations
+   Colors + typography tokens. Google Fonts loaded via next/font
+   in app/layout.tsx — CSS variables --font-lato, --font-poppins,
+   and --font-source-serif-4 are injected on <html> at runtime.
+   ============================================================= */
+
+:root {
+  /* ---------- BRAND COLORS ---------- */
+  --vt-forest:        #4B6040;
+  --vt-sage:          #8CA47A;
+  --vt-cream:         #F2E9D6;
+
+  --vt-clay:          #BB734A;
+  --vt-ink:           #2F2840;
+
+  /* ---------- EXTENDED PALETTE ---------- */
+  --vt-forest-900:    #2E3B27;
+  --vt-forest-700:    #3B4C33;
+  --vt-forest-600:    #4B6040;
+  --vt-forest-500:    #5B7551;
+  --vt-forest-300:    #A6B89A;
+  --vt-forest-100:    #DDE5D5;
+
+  --vt-sage-700:      #6B8259;
+  --vt-sage-500:      #8CA47A;
+  --vt-sage-300:      #B6C7A8;
+  --vt-sage-100:      #E2EAD9;
+
+  --vt-cream-200:     #FAF4E5;
+  --vt-cream-300:     #F2E9D6;
+  --vt-cream-500:     #E3D6B8;
+  --vt-cream-700:     #C9B98F;
+
+  --vt-clay-700:      #934F2E;
+  --vt-clay-500:      #BB734A;
+  --vt-clay-300:      #D9A284;
+  --vt-clay-100:      #F2DAC8;
+
+  --vt-ink-900:       #1B1729;
+  --vt-ink-700:       #2F2840;
+  --vt-ink-500:       #4B4361;
+  --vt-ink-300:       #8B83A0;
+
+  --vt-paper:         #FBF7EE;
+  --vt-bone:          #F5EFE0;
+  --vt-stone-100:     #ECE5D4;
+  --vt-stone-300:     #C9C1AE;
+  --vt-stone-500:     #8E876F;
+  --vt-stone-700:     #5C5746;
+  --vt-stone-900:     #2A2820;
+
+  /* ---------- SEMANTIC: SURFACES ---------- */
+  --bg:               var(--vt-paper);
+  --bg-alt:           var(--vt-cream);
+  --bg-deep:          var(--vt-forest);
+  --bg-deeper:        var(--vt-ink);
+  --surface:          #FFFFFF;
+  --surface-sunken:   var(--vt-bone);
+
+  /* ---------- SEMANTIC: FOREGROUND ---------- */
+  --fg-1:             var(--vt-ink-900);
+  --fg-2:             var(--vt-stone-700);
+  --fg-3:             var(--vt-stone-500);
+  --fg-muted:         var(--vt-stone-300);
+  --fg-on-deep:       var(--vt-cream);
+  --fg-on-deep-2:     var(--vt-sage-300);
+
+  /* ---------- SEMANTIC: ACCENTS ---------- */
+  --accent:           var(--vt-forest);
+  --accent-soft:      var(--vt-sage);
+  --accent-warm:      var(--vt-clay);
+  --link:             var(--vt-forest-700);
+  --link-hover:       var(--vt-clay-700);
+
+  /* ---------- BORDERS / LINES ---------- */
+  --line-soft:        rgba(75, 96, 64, 0.12);
+  --line:             rgba(75, 96, 64, 0.22);
+  --line-strong:      rgba(75, 96, 64, 0.38);
+  --line-on-deep:     rgba(242, 233, 214, 0.18);
+
+  /* ---------- STATE ---------- */
+  --success:          #4B6040;
+  --warning:          #BB734A;
+  --danger:           #8C3A2E;
+  --info:             #4F6A88;
+
+  /* ---------- TYPE ---------- */
+  /* CSS variables injected by next/font via <html> className */
+  --font-sans:        var(--font-lato), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-body:        var(--font-sans);
+  --font-display:     var(--font-sans);
+  --font-wordmark:    var(--font-poppins), var(--font-lato), ui-sans-serif, system-ui, sans-serif;
+  --font-serif:       var(--font-source-serif-4), 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+  --font-mono:        ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --fw-light:         300;
+  --fw-regular:       400;
+  --fw-medium:        700;
+  --fw-semibold:      700;
+  --fw-bold:          700;
+  --fw-black:         900;
+
+  /* ---------- TYPE SCALE ---------- */
+  --fs-display-xl:    clamp(56px, 8vw, 112px);
+  --fs-display-lg:    clamp(44px, 6vw, 80px);
+  --fs-display:       clamp(36px, 4.5vw, 56px);
+  --fs-h1:            clamp(32px, 3.6vw, 44px);
+  --fs-h2:            clamp(26px, 2.6vw, 34px);
+  --fs-h3:            22px;
+  --fs-h4:            18px;
+  --fs-body-lg:       20px;
+  --fs-body:          18px;
+  --fs-body-sm:       16px;
+  --fs-caption:       13px;
+  --fs-eyebrow:       13px;
+
+  --lh-tight:         1.05;
+  --lh-snug:          1.2;
+  --lh-base:          1.55;
+  --lh-loose:         1.75;
+
+  --tracking-tight:   -0.02em;
+  --tracking-base:    0;
+  --tracking-wide:    0.08em;
+  --tracking-eyebrow: 0.18em;
+
+  /* ---------- SPACING ---------- */
+  --space-0:  0;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* ---------- RADII ---------- */
+  --r-xs:   2px;
+  --r-sm:   4px;
+  --r-md:   8px;
+  --r-lg:   14px;
+  --r-xl:   22px;
+  --r-2xl:  32px;
+  --r-pill: 999px;
+
+  /* ---------- SHADOWS ---------- */
+  --shadow-xs:    0 1px 2px rgba(47, 40, 64, 0.06);
+  --shadow-sm:    0 2px 6px rgba(47, 40, 64, 0.06), 0 1px 2px rgba(47, 40, 64, 0.04);
+  --shadow-md:    0 8px 20px -8px rgba(47, 40, 64, 0.12), 0 2px 6px rgba(47, 40, 64, 0.06);
+  --shadow-lg:    0 24px 48px -16px rgba(47, 40, 64, 0.18), 0 4px 10px rgba(47, 40, 64, 0.06);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -1px 0 rgba(75, 96, 64, 0.06);
+
+  /* ---------- MOTION ---------- */
+  --ease-out-soft:    cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-instant:      80ms;
+  --dur-fast:         160ms;
+  --dur-base:         240ms;
+  --dur-slow:         400ms;
+  --dur-page:         600ms;
+
+  /* ---------- WORDMARK ---------- */
+  --wm-tt-graft: -0.30em;
+}
+
+/* =============================================================
+   ELEMENT DEFAULTS
+   ============================================================= */
+
+html, body {
+  background: var(--bg);
+  color: var(--fg-1);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-base);
+  font-weight: var(--fw-regular);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
+  font-family: var(--font-sans);
+  color: var(--fg-1);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--lh-snug);
+  text-wrap: balance;
+  margin: 0 0 var(--space-4);
+}
+
+h1, .h1 { font-size: var(--fs-h1); font-weight: var(--fw-regular); }
+h2, .h2 { font-size: var(--fs-h2); font-weight: var(--fw-bold);    }
+h3, .h3 { font-size: var(--fs-h3); font-weight: var(--fw-bold);    }
+h4, .h4 { font-size: var(--fs-h4); font-weight: var(--fw-bold); letter-spacing: 0; }
+
+.display-xl, .display-lg, .display {
+  font-family: var(--font-display);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--lh-tight);
+  color: var(--fg-1);
+  text-wrap: balance;
+  margin: 0 0 var(--space-6);
+}
+.display-xl { font-size: var(--fs-display-xl); }
+.display-lg { font-size: var(--fs-display-lg); }
+.display    { font-size: var(--fs-display); }
+
+.editorial {
+  font-family: var(--font-serif);
+  font-weight: var(--fw-regular);
+  font-style: italic;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--vt-forest);
+}
+
+p, .p {
+  margin: 0 0 var(--space-4);
+  color: var(--fg-1);
+  font-family: var(--font-body);
+  text-wrap: pretty;
+  max-width: 68ch;
+}
+
+.lead {
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-loose);
+  color: var(--fg-2);
+  font-family: var(--font-body);
+  font-weight: var(--fw-regular);
+  max-width: 60ch;
+}
+
+small, .caption {
+  font-size: var(--fs-caption);
+  color: var(--fg-3);
+  letter-spacing: 0.02em;
+}
+
+a {
+  color: var(--link);
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+  transition: color var(--dur-fast) var(--ease-out-soft);
+}
+a:hover { color: var(--link-hover); }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: var(--space-8) 0;
+}
+
+::selection { background: var(--vt-sage-300); color: var(--vt-ink-900); }
+
+/* =============================================================
+   WORDMARK
+   ============================================================= */
+.wordmark {
+  font-family: var(--font-wordmark);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  font-feature-settings: "kern" on;
+}
+
+.wm-tt {
+  display: inline-block;
+  letter-spacing: var(--wm-tt-graft);
+  margin-right: calc(-1 * var(--wm-tt-graft));
+  font-kerning: none;
+  font-feature-settings: "kern" off;
+}
