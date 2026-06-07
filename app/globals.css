@@ -655,10 +655,8 @@
 .site-header-hamburger:hover { color: white; }
 
 @media (max-width: 900px) {
-  .site-header-col--left { display: none; }
-  .site-header-col--right .site-header-link { display: none; }
-  .site-header-hamburger { display: flex; }
-  .site-header-inner { padding: 0 24px; }
+  .site-header-inner { padding: 0 16px; }
+  .site-header-link { font-size: 11px; letter-spacing: 0.04em; }
 }
 
 /* ============================================================
@@ -760,6 +758,11 @@
   filter: drop-shadow(0 4px 48px rgba(0, 0, 0, 0.35));
   user-select: none;
   pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .hero-fs-logo { width: 98vw; }
+  .hero-fs-content { padding: 0 4px; }
 }
 
 .hero-fs-tagline {

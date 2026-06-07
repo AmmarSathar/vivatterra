@@ -1,21 +1,14 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
 
 const COVER_MS = 850; // two 0.4 s tweens + small buffer
 
 export default function Header() {
   const router = useRouter();
-  const [mobileOpen, setMobileOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [mobileOpen]);
 
   useEffect(() => {
     let lastY = window.scrollY;
@@ -50,7 +43,6 @@ export default function Header() {
   const navigate = useCallback(
     (e: React.MouseEvent, href: string) => {
       e.preventDefault();
-      setMobileOpen(false);
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         router.push(href);
         return;
@@ -61,66 +53,28 @@ export default function Header() {
     [router]
   );
 
-  const close = () => setMobileOpen(false);
-
   return (
-    <>
-      <header ref={headerRef} className="site-header">
-        <div className="site-header-inner">
-          <div className="site-header-col site-header-col--left">
-            <Link href="/about" className="site-header-link" onClick={(e) => navigate(e, '/about')}>
-              Our Mission
-            </Link>
-          </div>
-
-          <div className="site-header-col site-header-col--center">
-            <Link href="/" className="site-header-tt" aria-label="vivaTTerra — home" onClick={(e) => navigate(e, '/')}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/TT-logo-white.svg" alt="" className="site-header-tt-img" draggable={false} />
-            </Link>
-          </div>
-
-          <div className="site-header-col site-header-col--right">
-            <Link href="/about?tab=contact" className="site-header-link" onClick={(e) => navigate(e, '/about?tab=contact')}>
-              Contact
-            </Link>
-            <button
-              className="site-header-hamburger"
-              aria-label="Open menu"
-              onClick={() => setMobileOpen(true)}
-            >
-              <Menu size={20} strokeWidth={1.5} />
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {/* Mobile full-screen drawer */}
-      <div
-        className={`mobile-menu${mobileOpen ? ' open' : ''}`}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Navigation"
-      >
-        <div className="mobile-menu-header">
-          <Link href="/" className="brand" onClick={(e) => navigate(e, '/')}>
-            viva<span className="wm-tt">TT</span>erra
+    <header ref={headerRef} className="site-header">
+      <div className="site-header-inner">
+        <div className="site-header-col site-header-col--left">
+          <Link href="/about" className="site-header-link" onClick={(e) => navigate(e, '/about')}>
+            Our Mission
           </Link>
-          <button className="mobile-menu-close" aria-label="Close menu" onClick={close}>
-            <X size={22} strokeWidth={1.75} />
-          </button>
         </div>
-        <nav className="mobile-menu-nav">
-          <Link href="/" className="mobile-menu-link" onClick={(e) => navigate(e, '/')}>Home</Link>
-          <Link href="/about" className="mobile-menu-link" onClick={(e) => navigate(e, '/about')}>Our Mission</Link>
-          <Link href="/about?tab=contact" className="mobile-menu-link" onClick={(e) => navigate(e, '/about?tab=contact')}>Contact</Link>
-        </nav>
-        <div className="mobile-menu-cta">
-          <Link href="/about?tab=contact" className="btn btn-primary" onClick={(e) => navigate(e, '/about?tab=contact')}>
-            Join the mission <span className="btn-arrow">→</span>
+
+        <div className="site-header-col site-header-col--center">
+          <Link href="/" className="site-header-tt" aria-label="vivaTTerra — home" onClick={(e) => navigate(e, '/')}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/TT-logo-white.svg" alt="" className="site-header-tt-img" draggable={false} />
+          </Link>
+        </div>
+
+        <div className="site-header-col site-header-col--right">
+          <Link href="/about?tab=contact" className="site-header-link" onClick={(e) => navigate(e, '/about?tab=contact')}>
+            Contact
           </Link>
         </div>
       </div>
-    </>
+    </header>
   );
 }

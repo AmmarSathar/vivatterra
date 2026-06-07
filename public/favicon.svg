@@ -1,4 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="6" fill="#4B6040"/>
-  <text x="16" y="23" font-family="Georgia, serif" font-size="15" font-weight="400" fill="#F2E9D6" text-anchor="middle" letter-spacing="-1">vT</text>
+  <rect width="32" height="32" rx="5" fill="#2F2840"/>
+  <text
+    x="16" y="23"
+    font-family="'Trebuchet MS', Arial, sans-serif"
+    font-size="17"
+    font-weight="700"
+    fill="#F2E9D6"
+    text-anchor="middle"
+    letter-spacing="-2"
+  >TT</text>
 </svg>
