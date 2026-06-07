@@ -3,6 +3,8 @@ import { Lato, Poppins, Source_Serif_4 } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import TransitionOverlay from '@/components/TransitionOverlay';
+import SmoothScroll from '@/components/SmoothScroll';
 
 const lato = Lato({
   weight: ['100', '300', '400', '700', '900'],
@@ -13,14 +15,14 @@ const lato = Lato({
 });
 
 const poppins = Poppins({
-  weight: ['400', '500'],
+  weight: ['400', '500', '600'],
   subsets: ['latin'],
   variable: '--font-poppins',
   display: 'swap',
 });
 
 const sourceSerif4 = Source_Serif_4({
-  weight: ['400', '500', '600'],
+  weight: ['200', '300', '400', '500', '600', '700'],
   style: ['normal', 'italic'],
   subsets: ['latin'],
   variable: '--font-source-serif-4',
@@ -49,6 +51,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main>{children}</main>
         <Footer />
+        <TransitionOverlay />
+        <SmoothScroll />
       </body>
     </html>
   );

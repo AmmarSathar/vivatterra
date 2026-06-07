@@ -16,11 +16,13 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <RealFood />
-      <SocialPurpose />
-      <FourIndustries />
-      <ProductSpecs />
-      <HomeCTA />
+      <div className="content-panel">
+        <RealFood />
+        <SocialPurpose />
+        <FourIndustries />
+        <ProductSpecs />
+        <HomeCTA />
+      </div>
     </>
   );
 }
