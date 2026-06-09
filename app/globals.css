@@ -486,6 +486,47 @@
   margin: 0 0 48px;
 }
 
+.harvester {
+  margin-top: 56px;
+}
+.harvester-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(24px, 3vw, 36px);
+  color: var(--vt-cream);
+  margin: 0 0 32px;
+}
+.harvester-portrait {
+  width: 260px;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--r-lg);
+  border: 1px dashed rgba(242, 233, 214, 0.28);
+  background: rgba(255, 255, 255, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 24px;
+}
+.harvester-portrait span {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--vt-sage-300);
+  opacity: 0.6;
+}
+.harvester-name {
+  font-family: var(--font-wordmark);
+  font-weight: 600;
+  font-size: clamp(20px, 2.2vw, 26px);
+  color: var(--vt-cream);
+  margin: 0;
+}
+.harvester-meta {
+  font-size: 16px;
+  color: var(--vt-sage-300);
+  margin: 4px 0 0;
+}
+
 .cta-detail {
   font-size: 18px;
   line-height: 1.65;
@@ -709,7 +750,46 @@
    ============================================================ */
 .card-stack {
   position: relative;
-  background: var(--vt-ink);
+  background: linear-gradient(180deg, var(--vt-clay) 0%, var(--vt-ink) 100%);
+}
+
+/* Progressive frosted-glass blur fixed to the bottom 15% of the viewport.
+   Three stacked layers with increasing blur radius + deepening masks give a
+   smooth gaussian ramp rather than one hard-edged blur band. */
+.home-bottom-glow {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 15vh;
+  z-index: 50;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.04);
+  /* Lightest blur, spread across the whole band */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  mask-image: linear-gradient(to top, #000 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 100%);
+}
+.home-bottom-glow::before,
+.home-bottom-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+/* Medium blur, concentrated lower */
+.home-bottom-glow::before {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  mask-image: linear-gradient(to top, #000 0%, transparent 60%);
+  -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 60%);
+}
+/* Heaviest blur, only at the very bottom */
+.home-bottom-glow::after {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  mask-image: linear-gradient(to top, #000 0%, transparent 32%);
+  -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 32%);
 }
 
 .stack-card-wrapper {
@@ -726,7 +806,6 @@
   justify-content: center;
   background: var(--vt-paper);
   border-radius: 8px;
-  box-shadow: 0 -20px 60px -8px rgba(0, 0, 0, 0.45);
   overflow: hidden;
   transform-origin: top center;
   will-change: transform;
@@ -739,19 +818,52 @@
 
 /* Real Food — static centered statement */
 .realfood-static {
+  position: relative;
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  padding: 96px 0;
+  align-items: flex-start;
+  padding: 18vh 0 96px;
+  background-image: url('/Photo/farmer-background.png');
+  background-size: cover;
+  background-position: center right;
+}
+/* Left scrim so the text reads against the warm photo */
+.realfood-static::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    rgba(26, 18, 10, 0.62) 0%,
+    rgba(26, 18, 10, 0.34) 38%,
+    rgba(26, 18, 10, 0) 66%
+  );
+}
+.realfood-static .container-narrow {
+  position: relative;
+  z-index: 2;
+  max-width: none;
+  margin: 0;
+  padding-left: clamp(28px, 8vw, 150px);
+  padding-right: 40px;
 }
 .realfood-static-text {
   font-family: var(--font-wordmark);
   font-weight: 600;
   font-size: clamp(28px, 4.4vw, 60px);
   line-height: 1.18;
-  text-align: center;
-  color: var(--vt-ink);
+  text-align: left;
+  color: var(--vt-cream);
   margin: 0;
+  max-width: 22ch;
+}
+.realfood-static-muted {
+  font-family: var(--font-lato);
+  font-weight: 500;
+  font-size: 0.8em;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .hero-fs-media {
@@ -873,7 +985,7 @@
 .photo-placeholder { aspect-ratio: 4 / 5; border-radius: 6px; position: relative; overflow: hidden; width: 100%; }
 .photo-placeholder::after { content: attr(data-caption); position: absolute; bottom: 14px; left: 18px; font-family: var(--font-mono); font-size: 10px; color: rgba(242,233,214,0.5); letter-spacing: 0.08em; }
 .realfood-ph { background: radial-gradient(circle at 50% 40%, var(--vt-sage-500) 0%, var(--vt-forest-700) 48%, var(--vt-ink-900) 100%); }
-.socialpurpose-ph { background: radial-gradient(circle at 60% 35%, var(--vt-forest-500) 0%, var(--vt-forest-900) 55%, var(--vt-ink-900) 100%); }
+.ourfirstproduct-ph { background: radial-gradient(circle at 60% 35%, var(--vt-forest-500) 0%, var(--vt-forest-900) 55%, var(--vt-ink-900) 100%); }
 
 /* ============================================================
    META-LIST — standalone

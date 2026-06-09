@@ -58,7 +58,7 @@
 
 ---
 
-## Home — Social Purpose
+## Home — Our First Product
 
 | Element | Animation | Tech |
 |---|---|---|
