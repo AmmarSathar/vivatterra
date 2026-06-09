@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Hero from '@/components/home/Hero';
+import CardStack from '@/components/home/CardStack';
 import RealFood from '@/components/home/RealFood';
 import SocialPurpose from '@/components/home/SocialPurpose';
 import FourIndustries from '@/components/home/FourIndustries';
@@ -17,11 +18,13 @@ export default function HomePage() {
     <>
       <Hero />
       <div className="content-panel">
-        <RealFood />
-        <SocialPurpose />
-        <FourIndustries />
-        <ProductSpecs />
-        <HomeCTA />
+        <CardStack>
+          <RealFood />
+          <SocialPurpose />
+          <FourIndustries />
+          <ProductSpecs />
+          <HomeCTA />
+        </CardStack>
       </div>
     </>
   );
