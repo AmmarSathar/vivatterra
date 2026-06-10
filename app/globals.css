@@ -527,6 +527,189 @@
   margin: 4px 0 0;
 }
 
+/* Our First Product — product image background */
+.ofp-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-image: url('/Photo/product-image-1.png');
+  background-size: cover;
+  background-position: center;
+}
+.ofp-section > .container-narrow {
+  position: relative;
+  z-index: 2;
+  max-width: none;
+  margin: 0;
+  padding-left: 40px;
+  padding-right: clamp(28px, 8vw, 150px);
+}
+
+/* Light / dark view toggle */
+.ofp-mode-toggle {
+  position: absolute;
+  top: 36px;
+  right: clamp(28px, 8vw, 150px);
+  z-index: 3;
+  width: 64px;
+  height: 32px;
+  padding: 3px;
+  border: none;
+  border-radius: 999px;
+  background: #2c2c2c;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background 300ms var(--ease-out-soft);
+}
+.ofp-toggle-knob {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #fff;
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 300ms var(--ease-out-soft);
+}
+.ofp-toggle-knob svg {
+  width: 15px;
+  height: 15px;
+}
+.ofp-mode-light .ofp-mode-toggle {
+  background: #cfc7b5;
+}
+.ofp-mode-light .ofp-toggle-knob {
+  transform: translateX(32px);
+}
+
+/* Light mode — dark text on the cream scene */
+.ofp-section .eyebrow,
+.ofp-section .section-header h2 {
+  transition: color 300ms var(--ease-out-soft);
+}
+.ofp-section.ofp-mode-light .eyebrow,
+.ofp-section.ofp-mode-light .section-header h2 {
+  color: var(--vt-ink-900);
+}
+.ofp-section.ofp-mode-light .ofp-card {
+  background: var(--vt-forest);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+.ofp-section.ofp-mode-light .ofp-card .ofp-details-title {
+  color: var(--vt-sage-300);
+}
+.ofp-section.ofp-mode-light .ofp-card .ofp-detail-row {
+  border-top-color: rgba(255, 255, 255, 0.16);
+}
+.ofp-section.ofp-mode-light .ofp-card .ofp-detail-row dt {
+  color: var(--vt-cream);
+}
+.ofp-section.ofp-mode-light .ofp-card .ofp-detail-row dd {
+  color: var(--vt-sage-300);
+}
+.ofp-section .section-header {
+  margin-left: auto;
+  text-align: right;
+}
+/* Big Poppins-bold header, right-aligned, one line each */
+.ofp-section .eyebrow {
+  font-family: var(--font-poppins);
+  font-weight: 700;
+  font-size: clamp(44px, 7vw, 104px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--vt-cream);
+  display: block;
+  margin-bottom: 16px;
+}
+.ofp-section .eyebrow::before { display: none; }
+.ofp-section .section-header h2 {
+  font-family: var(--font-lato);
+  font-weight: 700;
+  font-size: clamp(20px, 2.6vw, 36px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+/* Product details — pointer-driven 3D perspective card */
+.ofp-details {
+  margin-left: auto;
+  margin-top: 36px;
+  max-width: 30rem;
+  perspective: 1000px;
+}
+.ofp-card {
+  text-align: left;
+  padding: 28px 30px;
+  background: var(--vt-cream);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: var(--r-lg);
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.55);
+  transform-style: preserve-3d;
+  transition: transform 320ms var(--ease-out-soft),
+    background 300ms var(--ease-out-soft), border-color 300ms var(--ease-out-soft);
+  will-change: transform;
+}
+.ofp-card .ofp-details-title {
+  color: var(--vt-clay);
+}
+.ofp-card .ofp-detail-row {
+  border-top-color: rgba(0, 0, 0, 0.1);
+}
+.ofp-card .ofp-detail-row dt {
+  color: var(--vt-ink-900);
+}
+.ofp-card .ofp-detail-row dd {
+  color: var(--vt-stone-700);
+}
+.ofp-details-title {
+  font-family: var(--font-poppins);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--vt-sage-300);
+  margin: 0 0 14px;
+}
+.ofp-detail-list {
+  margin: 0;
+}
+.ofp-detail-row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 18px;
+  padding: 10px 0;
+  border-top: 1px solid rgba(242, 233, 214, 0.16);
+}
+.ofp-detail-row dt {
+  font-family: var(--font-lato);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--vt-cream);
+}
+.ofp-detail-row dd {
+  margin: 0;
+  font-family: var(--font-lato);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--vt-sage-300);
+}
+.ofp-detail-row dd em {
+  font-style: italic;
+  opacity: 0.8;
+}
+
+@media (max-width: 720px) {
+  .ofp-detail-row { grid-template-columns: 1fr; gap: 2px; }
+}
+
 .cta-detail {
   font-size: 18px;
   line-height: 1.65;
