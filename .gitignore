@@ -14,6 +14,9 @@ node_modules/
 # Design system reference — local only
 vivaTTerra Design System (1)/
 
+# Original full-res video masters — local only, served compressed from public/video
+video-originals/
+
 # OS
 .DS_Store
 Thumbs.db
