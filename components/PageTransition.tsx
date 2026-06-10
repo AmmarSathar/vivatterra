@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 export default function PageTransition({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    const lenis = (window as any).__lenis;
+    const lenis = window.__lenis;
     if (lenis) {
       lenis.scrollTo(0, { immediate: true });
     } else {

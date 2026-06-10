@@ -1,6 +1,13 @@
 'use client';
 
 import { useEffect } from 'react';
+import type Lenis from 'lenis';
+
+declare global {
+  interface Window {
+    __lenis?: Lenis;
+  }
+}
 
 export default function SmoothScroll() {
   useEffect(() => {
@@ -16,7 +23,7 @@ export default function SmoothScroll() {
       const lenis = new Lenis({ lerp: 0.08 });
 
       // Expose globally so PageTransition can call scrollTo(0) on route change
-      (window as any).__lenis = lenis;
+      window.__lenis = lenis;
 
       // Keep ScrollTrigger in sync with Lenis scroll position
       lenis.on('scroll', ScrollTrigger.update);
@@ -29,7 +36,7 @@ export default function SmoothScroll() {
       destroy = () => {
         lenis.destroy();
         gsap.ticker.remove(tick);
-        delete (window as any).__lenis;
+        delete window.__lenis;
       };
     });
 
