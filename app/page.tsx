@@ -3,7 +3,7 @@ import Hero from '@/components/home/Hero';
 import CardStack from '@/components/home/CardStack';
 import RealFood from '@/components/home/RealFood';
 import OurFirstProduct from '@/components/home/OurFirstProduct';
-import FourIndustries from '@/components/home/FourIndustries';
+import Harvester from '@/components/home/Harvester';
 import ProductSpecs from '@/components/home/ProductSpecs';
 import HomeCTA from '@/components/home/HomeCTA';
 
@@ -21,7 +21,7 @@ export default function HomePage() {
         <CardStack>
           <RealFood />
           <OurFirstProduct />
-          <FourIndustries />
+          <Harvester />
           <ProductSpecs />
           <HomeCTA />
         </CardStack>

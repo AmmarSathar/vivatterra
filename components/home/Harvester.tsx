@@ -1,54 +1,91 @@
 'use client';
 
-import { useRevealChildren } from '@/hooks/useRevealChildren';
+import { useState, type CSSProperties } from 'react';
+import { useReveal } from '@/hooks/useReveal';
 
-const STEPS = [
-  {
-    num: '01',
-    name: 'Harvest',
-    desc: 'Wild açaí palms harvested by cooperative members in Carmen Pecha territory, TCO Tacana I.',
-  },
-  {
-    num: '02',
-    name: 'Pulp',
-    desc: 'Fruit pulped locally — capturing value at the point of extraction, before it leaves the region.',
-  },
-  {
-    num: '03',
-    name: 'Freeze-dry',
-    desc: 'Pulp freeze-dried in Ixiamas, Bolivia, removing 90% water content under vacuum sublimation.',
-  },
-  {
-    num: '04',
-    name: 'Pulverize',
-    desc: 'Dried pulp pulverized into a shelf-stable, batch-consistent powder ready for global distribution.',
-  },
+const CARDS = [
+  'acai 2.jpg',
+  'acai_forest.avif',
+  'Bolivian Acai Euterpe precaratoria.jpg',
+  'carmen pecha image.jpg',
+  'Figura-1-Mapa-de-la-zona-del-aprovechamiento-de-Caiman-yacare-Se-muestran-las.png',
 ];
 
-export default function FourIndustries() {
-  const chainRef = useRevealChildren<HTMLDivElement>(0.08);
+// CardDeck settings
+const SPACING = 120; // horizontal gap between cards
+const ROTATION = 10; // deg of tilt per step from centre
+const ARC_DEPTH = 10; // vertical arc curvature
+const SIZE_DECAY = 0.04; // scale lost per step from centre
+const HOVER_SCALE = 1.05;
+const HOVER_LIFT = 10; // px raised on hover
+const PUSH_FORCE = 150; // how far neighbours slide away from the hovered card
+const CARD_W = 360;
+const CARD_H = 480;
+const RADIUS = 48;
+
+export default function Harvester() {
+  const ref = useReveal<HTMLElement>();
+  const [hovered, setHovered] = useState<number | null>(null);
+  const center = (CARDS.length - 1) / 2;
+
+  const cardStyle = (i: number): CSSProperties => {
+    const d = i - center;
+    let tx = d * SPACING;
+    let ty = d * d * ARC_DEPTH;
+    const rot = d * ROTATION;
+    let scale = 1 - Math.abs(d) * SIZE_DECAY;
+    let z = 100 - Math.round(Math.abs(d) * 10);
+
+    if (hovered !== null) {
+      if (i === hovered) {
+        scale *= HOVER_SCALE;
+        ty -= HOVER_LIFT;
+        z = 200;
+      } else {
+        const dist = i - hovered;
+        tx += Math.sign(dist) * (PUSH_FORCE / Math.abs(dist));
+      }
+    }
+
+    return {
+      width: CARD_W,
+      height: CARD_H,
+      borderRadius: RADIUS,
+      zIndex: z,
+      transform: `translate(calc(-50% + ${tx}px), ${ty}px) rotate(${rot}deg) scale(${scale})`,
+    };
+  };
 
   return (
-    <section className="industries">
-      <div className="container">
-        <div className="industries-header">
-          <div className="industries-eyebrow">Four local industries</div>
-          <h2 className="industries-heading">
-            Every bag traces through four steps, each one local.
-          </h2>
-        </div>
-
-        <div ref={chainRef} className="industries-chain">
-          {STEPS.map((step, i) => (
-            <div key={step.num} className="industry-step">
-              <div className="industry-num">{step.num}</div>
-              <div className="industry-name">{step.name}</div>
-              <p className="industry-desc">{step.desc}</p>
-              {i < STEPS.length - 1 && (
-                <div className="industry-arrow" aria-hidden="true">→</div>
-              )}
+    <section ref={ref} className="harvester-section">
+      <div className="container-narrow">
+        <div className="card-deck" onMouseLeave={() => setHovered(null)}>
+          {CARDS.map((name, i) => (
+            <div
+              key={name}
+              className="deck-card"
+              style={cardStyle(i)}
+              onMouseEnter={() => setHovered(i)}
+            >
+              <img src={encodeURI(`/Photo/fan-view/${name}`)} alt="" loading="lazy" />
             </div>
           ))}
+        </div>
+
+        <div className="harvester">
+          <h3 className="harvester-title">The Hands Behind the Harvest</h3>
+
+          <p className="harvester-name">Carmen Pecha</p>
+          <p className="harvester-meta">
+            Harvester, Tacana I Indigenous Territory, Bolivia
+          </p>
+
+          <div className="transition-quote">
+            <p>
+              Wild açaí has been part of life in this territory for generations. Carmen is one of
+              the people who makes this supply chain possible.
+            </p>
+          </div>
         </div>
       </div>
     </section>

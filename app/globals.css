@@ -353,126 +353,69 @@
 }
 
 /* ============================================================
-   FOUR INDUSTRIES — section rhythm break
+   HARVESTER — fanned cards over a sage panel
    ============================================================ */
-.industries {
-  background: var(--vt-ink);
+.harvester-section {
+  background: #8ca47a;
   padding: 80px 0;
-}
-
-.industries-header {
-  text-align: center;
-  margin-bottom: 48px;
-}
-
-.industries-eyebrow {
-  color: var(--vt-sage-300);
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  margin-bottom: 14px;
-}
-.industries-eyebrow::before {
-  content: '';
-  width: 24px;
-  height: 1px;
-  background: var(--vt-sage-300);
-  display: inline-block;
-}
-
-.industries-heading {
-  font-family: var(--font-sans);
-  font-weight: 300;
-  font-size: clamp(26px, 3vw, 38px);
-  color: var(--vt-cream);
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-  margin: 0;
-  text-wrap: balance;
-}
-
-.industries-chain {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border: 1px solid rgba(242, 233, 214, 0.12);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-}
-
-.industry-step {
-  padding: 32px 28px;
-  border-right: 1px solid rgba(242, 233, 214, 0.12);
-  position: relative;
-  transition: background 240ms var(--ease-out-soft);
-}
-.industry-step:last-child { border-right: 0; }
-.industry-step:hover { background: rgba(255, 255, 255, 0.03); }
-
-.industry-num {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  color: var(--vt-ink-300);
-  margin-bottom: 18px;
-}
-
-.industry-name {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: 20px;
-  color: var(--vt-cream);
-  margin: 0 0 10px;
-  letter-spacing: -0.01em;
-}
-
-.industry-desc {
-  font-size: 14px;
-  line-height: 1.65;
-  color: var(--vt-ink-300);
-  margin: 0;
-  max-width: none;
-}
-
-.industry-arrow {
-  position: absolute;
-  top: 50%;
-  right: -13px;
-  transform: translateY(-50%);
-  width: 24px;
-  height: 24px;
-  background: var(--vt-ink);
-  border: 1px solid rgba(242, 233, 214, 0.12);
-  border-radius: 50%;
+  min-height: 100vh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  z-index: 1;
-  font-size: 11px;
-  color: var(--vt-sage-300);
-  font-family: ui-monospace, monospace;
 }
 
-@media (max-width: 900px) {
-  .industries-chain {
-    grid-template-columns: 1fr 1fr;
-  }
-  .industry-step:nth-child(2) { border-right: 0; }
-  .industry-step:nth-child(3),
-  .industry-step:nth-child(4) {
-    border-top: 1px solid rgba(242, 233, 214, 0.12);
-  }
-  .industry-arrow { display: none; }
+/* CardDeck — arc-stacked cards; neighbours push away on hover (JS-driven) */
+.card-deck {
+  position: relative;
+  width: 100%;
+  height: 540px;
+  margin: 0 auto 40px;
 }
+.deck-card {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  overflow: hidden;
+  background: #c7cdbe;
+  transform-origin: bottom center;
+  transition: transform 460ms cubic-bezier(0.22, 0.61, 0.36, 1), z-index 0ms;
+  cursor: pointer;
+  will-change: transform;
+}
+.deck-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 1000px) {
+  .card-deck {
+    transform: scale(0.62);
+    transform-origin: top center;
+    height: 360px;
+  }
+}
+
+/* Text below the fan, centred on the sage panel */
+.harvester-section .harvester {
+  margin-top: 0;
+  text-align: center;
+}
+.harvester-section .harvester-title { color: #1d2a16; }
+.harvester-section .harvester-name { color: #16210f; }
+.harvester-section .harvester-meta { color: #324626; }
+.harvester-section .transition-quote {
+  margin: 28px auto 0;
+  max-width: 60ch;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-left: 3px solid var(--vt-clay);
+}
+.harvester-section .transition-quote p { color: #1d2a16; }
 
 @media (max-width: 600px) {
-  .industries-chain { grid-template-columns: 1fr; }
-  .industry-step { border-right: 0; border-bottom: 1px solid rgba(242, 233, 214, 0.12); }
-  .industry-step:last-child { border-bottom: 0; }
-  .industry-step:nth-child(3) { border-top: 0; }
+  .fan-card { width: 124px; height: 124px; }
 }
 
 /* ============================================================
