@@ -70,9 +70,9 @@ export default function Header() {
         </div>
 
         <div className="site-header-col site-header-col--right">
-          <Link href="/about?tab=contact" className="site-header-link" onClick={(e) => navigate(e, '/about?tab=contact')}>
+          <a href="mailto:hello@vivatterra.com" className="site-header-link">
             Contact
-          </Link>
+          </a>
         </div>
       </div>
     </header>

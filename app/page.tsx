@@ -5,7 +5,7 @@ import RealFood from '@/components/home/RealFood';
 import OurFirstProduct from '@/components/home/OurFirstProduct';
 import Harvester from '@/components/home/Harvester';
 import ProductSpecs from '@/components/home/ProductSpecs';
-import HomeCTA from '@/components/home/HomeCTA';
+import JoinCTA from '@/components/JoinCTA';
 
 export const metadata: Metadata = {
   title: 'VivaTTerra — Freeze-Dried Wild Açaí from Living Agroforestry Systems',
@@ -23,10 +23,10 @@ export default function HomePage() {
           <OurFirstProduct />
           <Harvester />
           <ProductSpecs />
-          <HomeCTA />
         </CardStack>
       </div>
       <div className="home-bottom-glow" aria-hidden="true" />
+      <JoinCTA />
     </>
   );
 }
