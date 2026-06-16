@@ -120,4 +120,15 @@ img { display: block; max-width: 100%; }
   .hero { padding: 56px 0 72px; }
   .section { padding: 64px 0; }
   .hero .ctas { flex-direction: column; align-items: flex-start; }
+  /* Footer: tighter + smaller content on mobile */
+  .footer { padding: 48px 0 28px; }
+  .footer-grid { gap: 24px; margin-bottom: 28px; }
+  .footer-logo { width: clamp(132px, 40vw, 164px); margin-bottom: 12px; }
+  .footer-tagline { font-size: 14px; }
+  .footer h5 { font-size: 10px; margin-bottom: 12px; }
+  .footer ul { gap: 12px; }
+  .footer ul a { font-size: 13px; }
+  .footer-contact a { gap: 8px; }
+  .footer-ico { width: 15px; height: 15px; }
+  .footer-meta { font-size: 10px; }
 }

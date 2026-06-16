@@ -3,11 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useReveal } from '@/hooks/useReveal';
 
-const IMAGES = {
-  dark: '/Photo/product-image-1.png',
-  light: '/Photo/product-image-2.png',
-} as const;
-
 export default function OurFirstProduct() {
   const ref = useReveal<HTMLElement>();
   const cardRef = useRef<HTMLDivElement>(null);
@@ -63,6 +58,7 @@ export default function OurFirstProduct() {
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     const el = cardRef.current;
     if (!el) return;
+    if (e.pointerType !== 'mouse') return; // no tilt on touch — keep swipe clean
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const r = el.getBoundingClientRect();
     const px = (e.clientX - r.left) / r.width - 0.5; // -0.5..0.5
@@ -78,7 +74,6 @@ export default function OurFirstProduct() {
     <section
       ref={ref}
       className={`section section-deep ofp-section${mode === 'light' ? ' ofp-mode-light' : ''}`}
-      style={{ backgroundImage: `url('${IMAGES[mode]}')` }}
     >
       <button
         type="button"
@@ -106,6 +101,9 @@ export default function OurFirstProduct() {
         <div className="section-header on-deep" ref={headerRef}>
           <div className="eyebrow eyebrow-on-deep">Our first product</div>
           <h2>Wild-Harvested Açaí Powder</h2>
+          <p className="ofp-swipe-hint" aria-hidden="true">
+            Swipe for details <span>&rarr;</span>
+          </p>
         </div>
 
         <div

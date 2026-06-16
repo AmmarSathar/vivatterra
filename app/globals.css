@@ -496,6 +496,18 @@
   background-size: cover;
   background-position: center;
 }
+.ofp-section.ofp-mode-light {
+  background-image: url('/Photo/product-image-2.png');
+}
+/* Mobile crops of the product scene */
+@media (max-width: 640px) {
+  .ofp-section {
+    background-image: url('/Photo/product-image-1-mobile.png');
+  }
+  .ofp-section.ofp-mode-light {
+    background-image: url('/Photo/product-image-2-mobile.png');
+  }
+}
 .ofp-section > .container-narrow {
   position: relative;
   z-index: 2;
@@ -665,8 +677,104 @@
   opacity: 0.8;
 }
 
+/* Mobile-only "swipe for details" hint */
+.ofp-swipe-hint {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  margin: auto 0 0;
+  font-family: var(--font-poppins);
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--vt-cream);
+  opacity: 0.8;
+}
+.ofp-swipe-hint span {
+  font-size: 11px;
+  display: inline-block;
+  animation: ofp-swipe-nudge 1.4s ease-in-out infinite;
+}
+/* Light mode background is pale — switch the hint to dark ink */
+.ofp-section.ofp-mode-light .ofp-swipe-hint { color: var(--vt-ink-900); }
+@keyframes ofp-swipe-nudge {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(6px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ofp-swipe-hint span { animation: none; }
+}
+
 @media (max-width: 720px) {
   .ofp-detail-row { grid-template-columns: 1fr; gap: 2px; }
+}
+
+/* Mobile: two swipeable panels — heading (product visible) then details.
+   The container becomes a horizontal scroll-snap track. */
+@media (max-width: 640px) {
+  .ofp-section > .container-narrow {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+  .ofp-section > .container-narrow::-webkit-scrollbar { display: none; }
+
+  .ofp-section .section-header,
+  .ofp-section .ofp-details {
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    margin: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  /* Panel 1 — heading at top, swipe hint at bottom, bag shows between */
+  .ofp-section .section-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: right;
+    padding: 22px 20px 24px;
+  }
+  .ofp-section .eyebrow {
+    font-size: clamp(30px, 10vw, 48px);
+    margin-bottom: 6px;
+  }
+  .ofp-section .section-header h2 {
+    font-size: clamp(15px, 4.5vw, 20px);
+    white-space: normal;
+  }
+  .ofp-swipe-hint { display: inline-flex; align-self: flex-end; }
+
+  /* Panel 2 — the details card, centered */
+  .ofp-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    perspective: none;
+  }
+  .ofp-card { padding: 16px 18px; }
+  .ofp-details-title { margin: 0 0 8px; }
+  .ofp-detail-row {
+    grid-template-columns: 104px 1fr;
+    gap: 10px;
+    padding: 5px 0;
+  }
+  .ofp-detail-row dt,
+  .ofp-detail-row dd { font-size: 12px; line-height: 1.4; }
 }
 
 .cta-detail {
@@ -942,6 +1050,9 @@
   position: sticky;
   top: var(--stack-top, 60px);
   perspective: 400px;
+  /* Clip the full-bleed (1.25x) card's horizontal bleed so it can't widen the
+     page on narrow screens. `clip` (not hidden) keeps sticky + vertical peek. */
+  overflow-x: clip;
 }
 
 .stack-card {
@@ -960,6 +1071,11 @@
   will-change: transform;
 }
 .stack-card > .section { width: 100%; }
+
+/* Wider cards on mobile — less side margin */
+@media (max-width: 640px) {
+  .stack-card { width: 92%; }
+}
 
 
 /* Real Food — static centered statement */
@@ -1261,6 +1377,215 @@
 .rfp-line { display: block; }
 .rfp-word { color: inherit; will-change: color; }
 
+/* On mobile, size to content so there isn't a big empty gap above the text */
+@media (max-width: 640px) {
+  .rfp-section {
+    min-height: auto;
+    padding: clamp(72px, 12vh, 120px) 24px;
+  }
+  .rfp-text { max-width: 18ch; }
+}
+
+/* ============================================================
+   CONTACT PAGE — "Get in touch" on clay
+   ============================================================ */
+.contact-page {
+  background: var(--vt-clay);
+  color: var(--vt-cream);
+  min-height: 100vh;
+  padding: calc(var(--header-h) + clamp(48px, 8vh, 96px)) 0 clamp(64px, 10vh, 120px);
+}
+.contact-shell {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 5vw, 64px);
+}
+.contact-intro {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: clamp(24px, 3.4vw, 50px);
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: var(--vt-cream);
+  max-width: 30ch;
+  margin: 0 0 clamp(48px, 9vh, 120px);
+  text-wrap: balance;
+}
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: start;
+}
+.contact-direct {
+  list-style: none;
+  margin: clamp(28px, 5vh, 48px) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.contact-direct a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--vt-cream);
+  font-size: clamp(15px, 1.4vw, 18px);
+  text-decoration: none;
+  transition: opacity 160ms var(--ease-out-soft);
+}
+.contact-direct a:hover { opacity: 0.7; }
+.contact-direct svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+.contact-title {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(48px, 7vw, 104px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--vt-cream);
+  margin: 0;
+}
+
+.contact-form-gt {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3vw, 36px);
+}
+.contact-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 3vw, 40px);
+}
+.gt-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.gt-field label {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--vt-cream);
+}
+.gt-field label span {
+  color: rgba(242, 233, 214, 0.6);
+  margin-left: 2px;
+}
+.gt-input-wrap {
+  position: relative;
+}
+.gt-field input,
+.gt-field textarea {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  color: var(--vt-cream);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  padding: 8px 0;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.gt-field input::placeholder,
+.gt-field textarea::placeholder {
+  color: rgba(242, 233, 214, 0.5);
+}
+.gt-field textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+/* Animatable underline element (draws in on load, brightens on focus) */
+.gt-underline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: rgba(242, 233, 214, 0.4);
+  transform-origin: left center;
+  transition: background 200ms var(--ease-out-soft);
+  pointer-events: none;
+}
+.gt-input-wrap:focus-within .gt-underline {
+  background: var(--vt-cream);
+}
+.gt-divider {
+  height: 1px;
+  border: 0;
+  background: rgba(242, 233, 214, 0.32);
+  margin: clamp(16px, 3vh, 32px) 0 0;
+}
+.gt-error {
+  margin: 0;
+  font-size: 14px;
+  color: #ffd9c9;
+  font-weight: 700;
+}
+.gt-submit {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100%;
+  background: var(--vt-cream);
+  color: var(--vt-ink-900);
+  border: none;
+  border-radius: 8px;
+  padding: 18px;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: color 360ms var(--ease-out-soft);
+}
+/* Ink fill sweeps in on hover; the label inverts to cream */
+.gt-submit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--vt-ink-900);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 400ms var(--ease-out-soft);
+}
+.gt-submit:hover:not(:disabled) { color: var(--vt-cream); }
+.gt-submit:hover:not(:disabled)::before { transform: scaleX(1); }
+.gt-submit:disabled { opacity: 0.7; cursor: not-allowed; }
+
+.gt-success h2 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: clamp(28px, 3.5vw, 44px);
+  color: var(--vt-cream);
+  margin: 0 0 16px;
+}
+.gt-success p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: rgba(242, 233, 214, 0.88);
+  max-width: 40ch;
+}
+.gt-success strong { color: var(--vt-cream); }
+
+@media (max-width: 860px) {
+  .contact-inner { grid-template-columns: 1fr; gap: clamp(28px, 6vw, 44px); }
+  .contact-title { font-size: clamp(40px, 12vw, 68px); }
+}
+@media (max-width: 520px) {
+  .contact-row { grid-template-columns: 1fr; }
+}
+
 /* ============================================================
    JOIN CTA — oversized headline + circular arrow, above the footer
    ============================================================ */
@@ -1351,7 +1676,12 @@
 }
 
 @media (max-width: 560px) {
-  .join-cta-inner { flex-direction: column; align-items: flex-start; gap: 32px; }
+  .join-cta-inner {
+    gap: 20px;
+    padding: clamp(56px, 16vw, 84px) 28px;
+  }
+  .join-cta-text { font-size: clamp(32px, 11vw, 56px); min-width: 0; }
+  .join-cta-arrow { width: 60px; }
 }
 
 /* ============================================================

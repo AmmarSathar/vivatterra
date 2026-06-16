@@ -3,7 +3,7 @@ import Link from 'next/link';
 const NAV = [
   { label: 'Home', href: '/' },
   { label: 'Mission', href: '/about' },
-  { label: 'Contact', href: 'mailto:fabrizio@vivatterra.com' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export default function Footer() {

@@ -4,7 +4,9 @@
       "Bash(npm install *)",
       "WebFetch(domain:prolab.framer.website)",
       "Bash(npx tsc *)",
-      "Bash(echo \"exit: $?\")"
+      "Bash(echo \"exit: $?\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
     ]
   }
 }
