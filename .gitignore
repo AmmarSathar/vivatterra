@@ -17,6 +17,10 @@ vivaTTerra Design System (1)/
 # Original full-res video masters — local only, served compressed from public/video
 video-originals/
 
+# Image-sequence source video — local only; the extracted frames in
+# public/frames/ are what get served at runtime
+public/video/Hands-behind.mp4
+
 # OS
 .DS_Store
 Thumbs.db
