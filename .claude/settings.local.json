@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(npm install *)",
-      "WebFetch(domain:prolab.framer.website)"
+      "WebFetch(domain:prolab.framer.website)",
+      "Bash(npx tsc *)",
+      "Bash(echo \"exit: $?\")"
     ]
   }
 }

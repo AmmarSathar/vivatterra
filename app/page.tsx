@@ -4,7 +4,7 @@ import CardStack from '@/components/home/CardStack';
 import RealFood from '@/components/home/RealFood';
 import OurFirstProduct from '@/components/home/OurFirstProduct';
 import Harvester from '@/components/home/Harvester';
-import ProductSpecs from '@/components/home/ProductSpecs';
+import RealFoodPower from '@/components/home/RealFoodPower';
 import JoinCTA from '@/components/JoinCTA';
 
 export const metadata: Metadata = {
@@ -22,10 +22,10 @@ export default function HomePage() {
           <RealFood />
           <OurFirstProduct />
           <Harvester />
-          <ProductSpecs />
         </CardStack>
       </div>
       <div className="home-bottom-glow" aria-hidden="true" />
+      <RealFoodPower />
       <JoinCTA />
     </>
   );

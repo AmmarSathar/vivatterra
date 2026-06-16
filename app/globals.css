@@ -355,124 +355,81 @@
 /* ============================================================
    HARVESTER — fanned cards over a sage panel
    ============================================================ */
+/* Full-bleed scroll-scrubbed image sequence fills the entire card */
 .harvester-section {
-  background: #8ca47a;
-  padding: 80px 0;
+  position: relative;
+  flex: 1 1 auto;
   min-height: 0;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-/* Eyebrow label above the gallery */
-.harvester-eyebrow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  margin: 0 0 clamp(8px, 2vh, 24px);
-  text-align: center;
-}
-.harvester-eyebrow span {
-  font-family: var(--font-poppins);
-  font-weight: 600;
-  font-size: clamp(11px, 1vw, 13px);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #11200a;
-}
-.harvester-eyebrow::before,
-.harvester-eyebrow::after {
-  content: '';
-  width: clamp(28px, 6vw, 64px);
-  height: 1px;
-  background: var(--vt-clay);
-  opacity: 0.7;
-}
-
-/* Photo gallery — even row of harvest images, sized to fit the card height */
-.harvester-gallery {
-  display: flex;
-  gap: clamp(8px, 1vw, 16px);
-  justify-content: center;
-  max-width: 1040px;
-  margin: 0 auto clamp(20px, 3.5vh, 44px);
-}
-.harvester-photo {
-  flex: 1 1 0;
-  min-width: 0;
-  height: clamp(180px, 32vh, 320px);
-  margin: 0;
-  border-radius: 16px;
+  padding: 0;
   overflow: hidden;
   background: #c7cdbe;
-  box-shadow: 0 18px 38px -20px rgba(0, 0, 0, 0.5);
 }
-.harvester-photo img {
+.harvester-canvas {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* canvas buffer is 16:9; cover fills the taller card */
   display: block;
 }
-@media (max-width: 760px) {
-  .harvester-gallery { flex-wrap: wrap; }
-  .harvester-photo { flex: 1 1 calc(50% - 8px); height: clamp(140px, 22vh, 200px); }
-}
-
-/* Carmen's words, elevated to an editorial pull-quote on the sage panel */
-.harvester-section .harvester {
-  margin: 0 auto;
-  max-width: 30ch;
-  text-align: center;
-}
-.harvester-section .harvester-quote {
-  position: relative;
-  margin: 0;
-  font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: clamp(20px, 2.4vw, 30px);
-  line-height: 1.32;
-  letter-spacing: -0.01em;
-  color: #11200a;
-}
-/* Oversized opening quotation mark as a watermark */
-.harvester-section .harvester-quote::before {
-  content: '\201C';
+/* Gradient scrim from the right so the title stays legible over the footage */
+.harvester-section::after {
+  content: '';
   position: absolute;
-  top: -0.45em;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--font-serif);
-  font-size: 2.6em;
-  line-height: 1;
-  color: var(--vt-clay);
-  opacity: 0.28;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.2) 38%,
+    rgba(0, 0, 0, 0) 65%
+  );
+}
+/* Text overlay, anchored to the right side of the card */
+.harvester-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: clamp(28px, 5vw, 72px);
   pointer-events: none;
 }
-.harvester-section .harvester-attribution {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  margin-top: clamp(14px, 2.4vh, 24px);
+.harvester-overlay-inner {
+  max-width: 34ch;
+  text-align: right;
+  color: var(--vt-cream);
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.5);
 }
-.harvester-section .harvester-name {
-  font-family: var(--font-wordmark);
-  font-weight: 600;
-  font-size: clamp(18px, 1.8vw, 22px);
-  color: #11200a;
+.harvester-title {
+  margin: 0 0 clamp(14px, 2vw, 22px);
+  font-family: var(--font-poppins);
+  font-weight: 700;
+  font-size: clamp(26px, 3.4vw, 52px);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  color: var(--vt-cream);
+}
+.harvester-attr {
+  margin: 0 0 clamp(10px, 1.5vw, 16px);
+  font-family: var(--font-sans);
+  font-size: clamp(13px, 1.1vw, 16px);
+  line-height: 1.45;
+  color: var(--vt-cream);
+  opacity: 0.92;
+}
+.harvester-attr strong { font-weight: 700; }
+.harvester-quote {
   margin: 0;
-}
-.harvester-section .harvester-meta {
-  font-size: clamp(12px, 1.1vw, 14px);
-  letter-spacing: 0.02em;
-  color: #2b3d1e;
-  margin: 0;
-}
-
-@media (max-width: 600px) {
-  .fan-card { width: 124px; height: 124px; }
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(15px, 1.5vw, 20px);
+  line-height: 1.5;
+  color: var(--vt-cream);
+  opacity: 0.95;
 }
 
 /* ============================================================
@@ -1275,6 +1232,34 @@
 .impact-num { font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--vt-stone-300); letter-spacing: 0.08em; flex-shrink: 0; padding-top: 3px; }
 .impact-label { font-size: 15px; font-weight: 700; color: var(--vt-ink-900); margin: 0 0 4px; letter-spacing: 0.01em; }
 .impact-desc { font-size: 14px; line-height: 1.6; color: var(--vt-stone-700); margin: 0; }
+
+/* ============================================================
+   REAL FOOD POWER — scroll-driven text fill (grey -> cream)
+   ============================================================ */
+.rfp-section {
+  position: relative;
+  z-index: 51; /* sit above the fixed home-bottom-glow */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(80px, 14vh, 200px) clamp(24px, 6vw, 96px);
+  background: var(--vt-ink);
+}
+.rfp-text {
+  margin: 0;
+  max-width: 16ch;
+  text-align: center;
+  font-family: var(--font-poppins);
+  font-weight: 700;
+  font-size: clamp(32px, 6vw, 92px);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  /* Initial greyed-out state; words fill to cream on scroll */
+  color: rgba(242, 233, 214, 0.16);
+}
+.rfp-line { display: block; }
+.rfp-word { color: inherit; will-change: color; }
 
 /* ============================================================
    JOIN CTA — oversized headline + circular arrow, above the footer
