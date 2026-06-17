@@ -13,77 +13,112 @@ export default function ContactSection() {
     setForm((prev) => ({ ...prev, [key]: value }));
 
   // Entrance animation: title reveals line-by-line, fields stagger up, the
-  // divider draws in, and the button rises.
+  // divider draws in, and the button rises. The whole page is above the fold,
+  // so the timeline plays immediately on load.
+  //
+  // Robustness (the page must never load with invisible text):
+  //  - Content is visible by default in CSS; JS only adds the entrance.
+  //  - A cancel guard stops a StrictMode-orphaned import from building a second
+  //    competing set of `from` tweens on the same elements.
+  //  - A wall-clock safety pass force-reveals everything shortly after setup, so
+  //    an interrupted entrance (remount, dropped frame) can't leave text hidden.
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
+    let cancelled = false;
     let kill: (() => void) | undefined;
 
     void Promise.all([import('gsap'), import('gsap/SplitText')]).then(
       ([{ gsap }, { SplitText }]) => {
+        if (cancelled) return;
         gsap.registerPlugin(SplitText);
-        void document.fonts.ready.then(() => {
-          const ctx = gsap.context(() => {
-            const tl = gsap.timeline({
-              delay: 0.25,
-              defaults: { ease: 'power3.out' },
+
+        // Run on real elapsed time, not frame count. Without this GSAP's default
+        // lag-smoothing stretches the entrance when frames drop (slow device /
+        // heavy load), so the timeline crawls and the masked text stays hidden
+        // far longer than its nominal ~1.3s.
+        gsap.ticker.lagSmoothing(0);
+
+        const ctx = gsap.context(() => {
+          const tl = gsap.timeline({
+            delay: 0.2,
+            defaults: { ease: 'power3.out' },
+          });
+
+          const revealLines = (
+            el: HTMLElement | null,
+            position?: gsap.Position
+          ) => {
+            if (!el) return;
+            const split = new SplitText(el, {
+              type: 'lines',
+              mask: 'lines',
+              linesClass: 'gt-line',
             });
+            tl.from(
+              split.lines,
+              { yPercent: 115, duration: 0.7, stagger: 0.08 },
+              position
+            );
+          };
 
-            const revealLines = (
-              el: HTMLElement | null,
-              position?: gsap.Position
-            ) => {
-              if (!el) return;
-              const split = new SplitText(el, {
-                type: 'lines',
-                mask: 'lines',
-                linesClass: 'gt-line',
-              });
-              tl.from(
-                split.lines,
-                { yPercent: 115, duration: 0.9, stagger: 0.1 },
-                position
-              );
-            };
+          revealLines(section.querySelector<HTMLElement>('.contact-intro'));
+          revealLines(section.querySelector<HTMLElement>('.contact-title'), '-=0.5');
 
-            revealLines(section.querySelector<HTMLElement>('.contact-intro'));
-            revealLines(section.querySelector<HTMLElement>('.contact-title'), '-=0.6');
+          tl.from(
+            section.querySelectorAll('.contact-direct li'),
+            { y: 18, autoAlpha: 0, duration: 0.5, stagger: 0.08 },
+            '-=0.4'
+          );
 
-            tl.from(
-              section.querySelectorAll('.contact-direct li'),
-              { y: 18, autoAlpha: 0, duration: 0.6, stagger: 0.1 },
-              '-=0.4'
-            );
+          tl.from(
+            section.querySelectorAll('.gt-field'),
+            { y: 26, autoAlpha: 0, duration: 0.5, stagger: 0.1 },
+            '-=0.4'
+          );
+          tl.from(
+            section.querySelectorAll('.gt-underline'),
+            { scaleX: 0, transformOrigin: 'left center', duration: 0.5, stagger: 0.1 },
+            '-=0.45'
+          );
+          tl.from(
+            section.querySelector('.gt-divider'),
+            { scaleX: 0, transformOrigin: 'left center', duration: 0.5 },
+            '-=0.35'
+          );
+          tl.from(
+            section.querySelector('.gt-submit'),
+            { y: 20, autoAlpha: 0, duration: 0.5 },
+            '-=0.35'
+          );
+        }, section);
 
-            tl.from(
-              section.querySelectorAll('.gt-field'),
-              { y: 26, autoAlpha: 0, duration: 0.7, stagger: 0.12 },
-              '-=0.5'
-            );
-            tl.from(
-              section.querySelectorAll('.gt-underline'),
-              { scaleX: 0, transformOrigin: 'left center', duration: 0.6, stagger: 0.12 },
-              '-=0.6'
-            );
-            tl.from(
-              section.querySelector('.gt-divider'),
-              { scaleX: 0, transformOrigin: 'left center', duration: 0.7 },
-              '-=0.3'
-            );
-            tl.from(
-              section.querySelector('.gt-submit'),
-              { y: 20, autoAlpha: 0, duration: 0.6 },
-              '-=0.4'
-            );
-          }, section);
-          kill = () => ctx.revert();
-        });
+        // Safety net: a fixed, early, wall-clock timer (not GSAP's ticker, which
+        // can be throttled). The entrance finishes well under 2s, so by 2.2s any
+        // element still hidden was interrupted (StrictMode remount, dropped
+        // frame) — kill whatever is mid-flight and clear the hiding props so
+        // nothing can be left invisible. A completed entrance is unaffected.
+        const safetyTimer = window.setTimeout(() => {
+          const els = section.querySelectorAll<HTMLElement>(
+            '.contact-intro, .contact-title, .gt-line, .contact-direct li, .gt-field, .gt-underline, .gt-divider, .gt-submit'
+          );
+          gsap.killTweensOf(els);
+          gsap.set(els, { clearProps: 'transform,opacity,visibility' });
+        }, 2200);
+
+        kill = () => {
+          window.clearTimeout(safetyTimer);
+          ctx.revert();
+        };
       }
     );
 
-    return () => kill?.();
+    return () => {
+      cancelled = true;
+      kill?.();
+    };
   }, []);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
