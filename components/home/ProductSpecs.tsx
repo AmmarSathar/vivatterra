@@ -45,10 +45,10 @@ export default function ProductSpecs() {
             </ul>
 
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-              <Link href="/about?tab=contact" className="btn btn-warm">
+              <a href="mailto:hello@vivatterra.com" className="btn btn-warm">
                 Request a sample <span className="btn-arrow">→</span>
-              </Link>
-              <Link href="/about?tab=why" className="btn btn-secondary">
+              </a>
+              <Link href="/about" className="btn btn-secondary">
                 Why agroforestry
               </Link>
             </div>

@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import Hero from '@/components/home/Hero';
+import CardStack from '@/components/home/CardStack';
 import RealFood from '@/components/home/RealFood';
-import SocialPurpose from '@/components/home/SocialPurpose';
-import FourIndustries from '@/components/home/FourIndustries';
-import ProductSpecs from '@/components/home/ProductSpecs';
-import HomeCTA from '@/components/home/HomeCTA';
+import OurFirstProduct from '@/components/home/OurFirstProduct';
+import Harvester from '@/components/home/Harvester';
+import RealFoodPower from '@/components/home/RealFoodPower';
+import JoinCTA from '@/components/JoinCTA';
 
 export const metadata: Metadata = {
   title: 'VivaTTerra — Freeze-Dried Wild Açaí from Living Agroforestry Systems',
@@ -16,11 +17,16 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <RealFood />
-      <SocialPurpose />
-      <FourIndustries />
-      <ProductSpecs />
-      <HomeCTA />
+      <div className="content-panel">
+        <CardStack>
+          <RealFood />
+          <OurFirstProduct />
+          <Harvester />
+        </CardStack>
+      </div>
+      <div className="home-bottom-glow" aria-hidden="true" />
+      <RealFoodPower />
+      <JoinCTA />
     </>
   );
 }

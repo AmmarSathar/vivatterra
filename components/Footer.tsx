@@ -1,20 +1,9 @@
 import Link from 'next/link';
 
-const COLS = [
-  {
-    heading: 'Navigation',
-    links: [
-      { label: 'Home', href: '/' },
-      { label: 'Mission', href: '/about' },
-      { label: 'Get in touch', href: '/about?tab=contact' },
-    ],
-  },
-  {
-    heading: 'Contact',
-    links: [
-      { label: 'hello@vivatterra.com', href: 'mailto:hello@vivatterra.com' },
-    ],
-  },
+const NAV = [
+  { label: 'Home', href: '/' },
+  { label: 'Mission', href: '/about' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export default function Footer() {
@@ -22,30 +11,74 @@ export default function Footer() {
     <footer className="footer">
       <div className="container">
         <div className="footer-grid">
-          <div>
-            <div className="brand">
-              viva<span className="wm-tt">TT</span>erra
-            </div>
-            <p className="blurb">
-              Let the land live. Building markets for agroforestry products from living ecosystems.
-            </p>
+          {/* Column 1 — Brand */}
+          <div className="footer-brand">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/footer-wordmark.svg"
+              alt="VivaTTerra"
+              className="footer-logo"
+            />
+            <p className="footer-tagline">Let the land live.</p>
           </div>
-          {COLS.map(col => (
-            <div key={col.heading}>
-              <h5>{col.heading}</h5>
-              <ul>
-                {col.links.map(link => (
-                  <li key={link.label}>
-                    <Link href={link.href}>{link.label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+
+          {/* Column 2 — Navigation */}
+          <nav className="footer-col" aria-label="Footer navigation">
+            <h5>Navigation</h5>
+            <ul>
+              {NAV.map((link) => (
+                <li key={link.label}>
+                  <Link href={link.href}>{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Column 3 — Contact */}
+          <div className="footer-col">
+            <h5>Contact</h5>
+            <ul className="footer-contact">
+              <li>
+                <a href="mailto:fabrizio@vivatterra.com">
+                  <svg
+                    className="footer-ico"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="m3 7 9 6 9-6" />
+                  </svg>
+                  fabrizio@vivatterra.com
+                </a>
+              </li>
+              <li>
+                <a href="tel:+15144411977">
+                  <svg
+                    className="footer-ico"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                  514-441-1977
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
+
         <div className="footer-meta">
           <span>© 2026 VivaTTerra. All rights reserved.</span>
-          <span>Carmen Pecha, Tacana I Territory · Bolivia</span>
         </div>
       </div>
     </footer>

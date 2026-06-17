@@ -1,101 +1,80 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
-const NAV = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'Mission' },
-  { href: '/about?tab=contact', label: 'Get in touch' },
-];
-
-function isActive(href: string, pathname: string): boolean {
-  if (href.includes('contact')) return false;
-  return pathname === href.split('?')[0];
-}
+const COVER_MS = 850; // two 0.4 s tweens + small buffer
 
 export default function Header() {
-  const [scrolled, setScrolled]     = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const pathname = usePathname();
+  const router = useRouter();
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    let lastY = window.scrollY;
+    let isHidden = false;
+    const THRESHOLD = 8;
+    let kill: (() => void) | undefined;
+
+    void import('gsap').then(({ gsap }) => {
+      function onScroll() {
+        const y = window.scrollY;
+        const delta = y - lastY;
+        if (Math.abs(delta) < THRESHOLD) return;
+        const shouldHide = y > 80 && delta > 0;
+        if (shouldHide !== isHidden) {
+          isHidden = shouldHide;
+          gsap.to(headerRef.current, {
+            yPercent: shouldHide ? -100 : 0,
+            duration: 0.45,
+            ease: shouldHide ? 'power2.in' : 'power3.out',
+            overwrite: true,
+          });
+        }
+        lastY = y;
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      kill = () => window.removeEventListener('scroll', onScroll);
+    });
+
+    return () => kill?.();
   }, []);
 
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [mobileOpen]);
-
-  const close = () => setMobileOpen(false);
+  const navigate = useCallback(
+    (e: React.MouseEvent, href: string) => {
+      e.preventDefault();
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        router.push(href);
+        return;
+      }
+      window.dispatchEvent(new CustomEvent('vt:cover'));
+      setTimeout(() => router.push(href), COVER_MS);
+    },
+    [router]
+  );
 
   return (
-    <>
-      <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
-        <div className="container nav-inner">
-          <Link href="/" className="brand" onClick={close}>
-            viva<span className="wm-tt">TT</span>erra
+    <header ref={headerRef} className="site-header">
+      <div className="site-header-inner">
+        <div className="site-header-col site-header-col--left">
+          <Link href="/about" className="site-header-link" onClick={(e) => navigate(e, '/about')}>
+            Our Mission
           </Link>
-
-          <ul>
-            {NAV.map(({ href, label }) => (
-              <li key={href}>
-                <Link href={href} className={isActive(href, pathname) ? 'active' : ''}>
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-
-          <Link href="/about?tab=contact" className="btn btn-primary nav-cta">
-            Join the mission <span className="btn-arrow">→</span>
-          </Link>
-
-          <button
-            className="nav-hamburger"
-            aria-label="Open menu"
-            onClick={() => setMobileOpen(true)}
-          >
-            <Menu size={22} strokeWidth={1.75} />
-          </button>
-        </div>
-      </nav>
-
-      <div
-        className={`mobile-menu${mobileOpen ? ' open' : ''}`}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Navigation"
-      >
-        <div className="mobile-menu-header">
-          <Link href="/" className="brand" onClick={close}>
-            viva<span className="wm-tt">TT</span>erra
-          </Link>
-          <button className="mobile-menu-close" aria-label="Close menu" onClick={close}>
-            <X size={22} strokeWidth={1.75} />
-          </button>
         </div>
 
-        <nav className="mobile-menu-nav">
-          {NAV.map(({ href, label }) => (
-            <Link key={href} href={href} className="mobile-menu-link" onClick={close}>
-              {label}
-            </Link>
-          ))}
-        </nav>
+        <div className="site-header-col site-header-col--center">
+          <Link href="/" className="site-header-tt" aria-label="vivaTTerra — home" onClick={(e) => navigate(e, '/')}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/TT-logo-white.svg" alt="" className="site-header-tt-img" draggable={false} />
+          </Link>
+        </div>
 
-        <div className="mobile-menu-cta">
-          <Link href="/about?tab=contact" className="btn btn-primary" onClick={close}>
-            Join the mission <span className="btn-arrow">→</span>
+        <div className="site-header-col site-header-col--right">
+          <Link href="/contact" className="site-header-link" onClick={(e) => navigate(e, '/contact')}>
+            Contact
           </Link>
         </div>
       </div>
-    </>
+    </header>
   );
 }

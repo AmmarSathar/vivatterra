@@ -1,87 +1,73 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import Link from 'next/link';
-
-const ORIGIN = [
-  { k: 'Territory',  v: 'Tacana I, Bolivia' },
-  { k: 'Species',    v: 'Euterpe precatoria' },
-  { k: 'Method',     v: 'Freeze-dried at origin' },
-  { k: 'Harvest',    v: '2024 season' },
-];
+import { TreePine } from 'lucide-react';
 
 export default function Hero() {
-  const eyebrowRef = useRef<HTMLDivElement>(null);
-  const headingRef = useRef<HTMLHeadingElement>(null);
-  const bodyRef    = useRef<HTMLParagraphElement>(null);
-  const ctasRef    = useRef<HTMLDivElement>(null);
-  const panelRef   = useRef<HTMLDivElement>(null);
+  const wordRef  = useRef<HTMLImageElement>(null);
+  const tagRef   = useRef<HTMLParagraphElement>(null);
+  const arrowRef = useRef<HTMLDivElement>(null);
 
+  // Entrance animation
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    let revert: (() => void) | undefined;
-
-    void Promise.all([import('gsap'), import('gsap/ScrollTrigger')]).then(
-      ([{ gsap }, { ScrollTrigger }]) => {
-        gsap.registerPlugin(ScrollTrigger);
-        const ctx = gsap.context(() => {
-          gsap.fromTo(
-            [eyebrowRef.current, headingRef.current, bodyRef.current, ctasRef.current],
-            { opacity: 0, y: 18 },
-            { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', stagger: 0.12 }
-          );
-          gsap.fromTo(
-            panelRef.current,
-            { opacity: 0, x: 28 },
-            { opacity: 1, x: 0, duration: 0.85, ease: 'power2.out', delay: 0.18 }
-          );
+    let kill: (() => void) | undefined;
+    void import('gsap').then(({ gsap }) => {
+      const ctx = gsap.context(() => {
+        gsap.fromTo(wordRef.current,  { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 1.3, ease: 'power3.out', delay: 0.4 });
+        gsap.fromTo(tagRef.current,   { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 1.0, ease: 'power2.out', delay: 1.05 });
+        gsap.fromTo(arrowRef.current, { opacity: 0 }, {
+          opacity: 1,
+          duration: 0.6,
+          ease: 'power1.out',
+          delay: 1.9,
+          onComplete: () => {
+            gsap.to(arrowRef.current, { y: -10, duration: 0.9, ease: 'sine.inOut', repeat: -1, yoyo: true });
+          },
         });
-        revert = () => ctx.revert();
-      }
-    );
-
-    return () => revert?.();
+      });
+      kill = () => ctx.revert();
+    });
+    return () => kill?.();
   }, []);
 
   return (
-    <section className="hero">
-      <div className="container">
-        <div className="hero-inner">
-          <div className="hero-content">
-            <div ref={eyebrowRef} className="eyebrow">
-              100% all natural açaí powder
-            </div>
-            <h1 ref={headingRef}>
-              Gifts from <span className="accent">living ecosystems.</span>
-            </h1>
-            <p ref={bodyRef} className="hero-lead-serif">
-              Agroforestry just makes sense — land made up of native trees with native food
-              crops growing around them. It is just how nature was intended to be.
-            </p>
-            <div ref={ctasRef} className="ctas">
-              <Link href="/about?tab=contact" className="btn btn-primary">
-                Join the mission <span className="btn-arrow">→</span>
-              </Link>
-              <Link href="/about" className="btn btn-ghost">
-                Our story <span className="btn-arrow">→</span>
-              </Link>
-            </div>
-          </div>
+    <section className="hero-fs">
 
-          <div ref={panelRef} className="hero-panel">
-            <div className="hero-panel-label">Origin provenance</div>
-            <div className="hero-panel-stats">
-              {ORIGIN.map(({ k, v }) => (
-                <div key={k}>
-                  <div className="hero-stat-k">{k}</div>
-                  <div className="hero-stat-v">{v}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+      {/* Background */}
+      <div className="hero-fs-media" aria-hidden="true">
+        <div className="hero-fs-gradient" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/Photo/background-images/forest-backdrop.jpg"
+          alt=""
+          className="hero-fs-video"
+          draggable={false}
+        />
+        <div className="hero-fs-overlay" />
       </div>
+
+      {/* Centered wordmark */}
+      <div className="hero-fs-content">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          ref={wordRef}
+          src="/vivaTTerra-logo-hero.svg"
+          alt="vivaTTerra"
+          className="hero-fs-logo"
+          style={{ opacity: 0 }}
+          draggable={false}
+        />
+        <p ref={tagRef} className="hero-fs-tagline" style={{ opacity: 0 }}>
+          Gifts from living ecosystems.
+        </p>
+      </div>
+
+      {/* Scroll cue */}
+      <div ref={arrowRef} className="hero-fs-scroll-cue" style={{ opacity: 0 }} aria-hidden="true">
+        <TreePine size={28} strokeWidth={1.25} style={{ transform: 'rotate(180deg)' }} />
+      </div>
+
     </section>
   );
 }
