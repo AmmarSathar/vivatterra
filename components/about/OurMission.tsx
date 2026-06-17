@@ -306,7 +306,7 @@ export default function OurMission() {
           <article className="person-card">
             <div className="person-photo">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/Photo/founders/Founder-Fabricio-Photo.png" alt="Fabrizio Colombo Fiore" />
+              <img src="/Photo/founders/Founder-Fabricio-Photo.webp" alt="Fabrizio Colombo Fiore" />
             </div>
             <h4 className="person-name">Fabrizio Colombo Fiore</h4>
             <p className="person-role">Co-Founder</p>
@@ -324,7 +324,7 @@ export default function OurMission() {
           <article className="person-card">
             <div className="person-photo">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/Photo/founders/Ammar-founder-photo.png" alt="Ammar Sathar" />
+              <img src="/Photo/founders/Ammar-founder-photo.webp" alt="Ammar Sathar" />
             </div>
             <h4 className="person-name">Ammar Sathar</h4>
             <p className="person-role">Co-Founder</p>

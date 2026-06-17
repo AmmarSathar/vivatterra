@@ -5,7 +5,7 @@ export default function Harvester() {
     <section className="harvester-section">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/Photo/background-images/acai-backdrop.png"
+        src="/Photo/background-images/acai-backdrop.webp"
         alt="The hands behind the harvest"
         className="harvester-canvas"
         draggable={false}

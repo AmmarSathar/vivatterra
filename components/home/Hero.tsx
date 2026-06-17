@@ -39,7 +39,7 @@ export default function Hero() {
         <div className="hero-fs-gradient" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/Photo/background-images/forest-backdrop.jpg"
+          src="/Photo/background-images/forest-backdrop.webp"
           alt=""
           className="hero-fs-video"
           draggable={false}
