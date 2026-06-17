@@ -1086,9 +1086,9 @@
   display: flex;
   align-items: flex-start;
   padding: 18vh 0 96px;
-  background-image: url('/Photo/farmer-background.png');
+  background-image: url('/Photo/background-images/6399717883_8e951e93a5_z.jpg');
   background-size: cover;
-  background-position: center right;
+  background-position: center;
 }
 /* Left scrim so the text reads against the warm photo */
 .realfood-static::before {

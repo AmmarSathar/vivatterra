@@ -84,8 +84,8 @@ export default function TransitionOverlay() {
       >
         <defs>
           <linearGradient id="vt-curtain-grad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
-            <stop offset="0.15" stopColor="#2F2840" />
-            <stop offset="0.85" stopColor="#4B6040" />
+            <stop offset="0.15" stopColor="#B6C7A8" />
+            <stop offset="0.85" stopColor="#8CA47A" />
           </linearGradient>
         </defs>
         <path

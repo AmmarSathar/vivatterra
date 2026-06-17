@@ -40,8 +40,22 @@ export default function CardStack({ children }: { children: React.ReactNode }) {
     applySizes();
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      window.addEventListener('resize', applySizes);
-      return () => window.removeEventListener('resize', applySizes);
+      // No scrubbed recede here, so the back card never gets scaled up. Pin it
+      // full-bleed statically — otherwise it stays at its 80–92% column width
+      // and leaves the dark stack gradient showing down both sides.
+      const pinFullBleed = () => {
+        const card = cards[0];
+        if (!card) return;
+        card.style.transformOrigin = 'top center';
+        card.style.transform = `scale(${window.innerWidth / card.offsetWidth})`;
+      };
+      const onResize = () => {
+        applySizes();
+        pinFullBleed();
+      };
+      pinFullBleed();
+      window.addEventListener('resize', onResize);
+      return () => window.removeEventListener('resize', onResize);
     }
 
     let kill: (() => void) | undefined;
