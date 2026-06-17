@@ -1324,6 +1324,75 @@
 .acai-mini-card p { font-size: 14px; line-height: 1.6; color: var(--vt-stone-700); margin: 0; }
 
 /* ============================================================
+   SITE LOADER — TT logo fills from the bottom on first load
+   ============================================================ */
+.site-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000; /* above the page-transition curtain (9999) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--vt-paper);
+  opacity: 1;
+  transition: opacity 550ms var(--ease-out-soft);
+}
+.site-loader.is-leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* The TT mark, used as an alpha mask. A faint base shows the empty glyph; the
+   fill child rises behind the same mask so green appears to pour into the TT. */
+.site-loader-logo {
+  position: relative;
+  width: clamp(120px, 22vw, 200px);
+  aspect-ratio: 265 / 227;
+  overflow: hidden;
+  background: var(--vt-sage-100);
+  -webkit-mask: url(/TT-logo-white.svg) center / contain no-repeat;
+  mask: url(/TT-logo-white.svg) center / contain no-repeat;
+}
+
+.site-loader-fill {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0%;
+  background: linear-gradient(180deg, var(--vt-sage) 0%, var(--vt-forest) 100%);
+  animation: tt-loader-fill 1.5s var(--ease-out-soft) forwards;
+}
+/* Soft highlight riding the top of the fill line for a liquid feel. */
+.site-loader-fill::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -4px;
+  height: 8px;
+  background: var(--vt-sage-300);
+  opacity: 0.7;
+}
+
+@keyframes tt-loader-fill {
+  from { height: 0%; }
+  to   { height: 100%; }
+}
+
+/* Lock scrolling while the loader covers the page. */
+body.is-loading {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-loader-fill {
+    animation: none;
+    height: 100%;
+  }
+}
+
+/* ============================================================
    PAGE TRANSITION — full-screen morphSVG curtain overlay
    ============================================================ */
 .vt-transition-overlay {
