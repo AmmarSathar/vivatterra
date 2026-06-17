@@ -304,7 +304,10 @@ export default function OurMission() {
         </h3>
         <div className="people-grid">
           <article className="person-card">
-            <div className="person-photo" data-caption="Fabrizio" aria-hidden="true" />
+            <div className="person-photo">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/Photo/founders/Founder-Fabricio-Photo.png" alt="Fabrizio Colombo Fiore" />
+            </div>
             <h4 className="person-name">Fabrizio Colombo Fiore</h4>
             <p className="person-role">Co-Founder</p>
             <p className="person-creds">
@@ -319,14 +322,14 @@ export default function OurMission() {
           </article>
 
           <article className="person-card">
-            <div className="person-photo" data-caption="Ammar" aria-hidden="true" />
+            <div className="person-photo">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/Photo/founders/Ammar-founder-photo.png" alt="Ammar Sathar" />
+            </div>
             <h4 className="person-name">Ammar Sathar</h4>
             <p className="person-role">Co-Founder</p>
-            <p className="person-creds person-creds--placeholder">
-              Credentials coming soon.
-            </p>
-            <p className="person-note person-note--placeholder">
-              A personal note coming soon.
+            <p className="person-creds">
+              B.Eng. Electrical Engineering (Concordia) · Embedded Software Developer
             </p>
           </article>
         </div>
