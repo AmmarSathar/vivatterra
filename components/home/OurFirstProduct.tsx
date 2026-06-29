@@ -125,6 +125,10 @@ export default function OurFirstProduct() {
               <dd>Carmen Pecha community, Tacana I Indigenous Territory, Bolivia</dd>
             </div>
             <div className="ofp-detail-row">
+              <dt>Project Partner</dt>
+              <dd>Samay O2 &ndash; Amazon Recovery</dd>
+            </div>
+            <div className="ofp-detail-row">
               <dt>Origin</dt>
               <dd>Ixiamas, TCO Tacana I &mdash; Amboró&ndash;Madidi corridor, Bolivia</dd>
             </div>

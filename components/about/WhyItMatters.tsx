@@ -5,41 +5,7 @@ export default function WhyItMatters() {
     <div className="tab-content">
       <section className="section">
         <div className="container-narrow">
-          <div className="section-header">
-            <div className="eyebrow">The bigger picture</div>
-            <h2>Every purchase is a signal. Most supply chains ignore that.</h2>
-          </div>
-          <p>
-            Supply chains are not neutral. They shape how land is used, how food is produced, and who
-            captures value along the way.
-          </p>
-          <p>
-            Commodity supply chains are mainly an organized battle of producing the greatest volume at
-            the lowest possible cost. The result is producers end up with no agency and consumers are
-            disconnected from the systems behind their purchase.
-          </p>
-          <p>
-            vivaTTerra is an attempt to build supply chains where every sale directly promotes living
-            ecosystems and human wellbeing.
-          </p>
-        </div>
-      </section>
-
-      <section className="section section-cream">
-        <div className="container-narrow">
-          <h2>The logic behind agroforestry sourcing</h2>
-          <p>
-            Agroforestry systems are land with native trees, cultivated food crops, and in many cases
-            livestock. This form of land management produces commercially valuable outputs while
-            maintaining full ecological function: carbon storage, watershed regulation, biodiversity, and
-            soil health.
-          </p>
-          <p>
-            Agroforestry has been around long before there was a name for it. It is just that the
-            economic case for it has been weak, because the markets for its products have been
-            underdeveloped. Building those markets is the work.
-          </p>
-          <div className="callout-quote" style={{ marginTop: '32px' }}>
+          <div className="callout-quote">
             <p>
               Biodiversity makes land rich, because the land holds ecological value. This transforms land
               from being a resource — up for extraction — to an ecosystem with a thriving economy.

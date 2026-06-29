@@ -6,6 +6,7 @@ import Link from 'next/link';
 const SPECS = [
   { k: 'Form',             v: 'Freeze-dried powder' },
   { k: 'Ingredients',      v: '100% Wild açaí (Euterpe precatoria)' },
+  { k: 'Project Partner',  v: 'Samay O2 – Amazon Recovery' },
   { k: 'Origin',           v: 'Ixiamas, TCO Tacana I — Amboró–Madidi corridor, Bolivia' },
   { k: 'Processing',       v: 'Freeze-dried and pulverized close to origin, in Ixiamas, Bolivia' },
   { k: 'Available format', v: '250 g bag' },

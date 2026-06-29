@@ -229,26 +229,18 @@ export default function OurMission() {
           I created VivaTTerra because I do not stand for extractive trade.
         </p>
         <p>
-          In late 2025, I was introduced to a community açaí initiative through an
-          environmental consultancy and an NGO that had helped finance a sustainable
-          açaí pulping facility — in a region otherwise dominated by industrial
-          sugarcane, aiming to create new economic opportunities rooted in native
-          biodiversity rather than monoculture expansion.
+          In late 2025, I was introduced to a community açaí initiative through
+          Samay O2 &ndash; Amazon Recovery, an NGO led by Massimo Giannini that
+          implemented the açaí pulping facility in Ixiamas and is now developing
+          a freeze-drying facility there &mdash; in a region otherwise dominated
+          by industrial sugarcane, aiming to create new economic opportunities
+          rooted in native biodiversity rather than monoculture expansion.
         </p>
         <p>
-          I saw an opportunity to help create a market for a value-added product:
-          freeze-dried açaí processed at origin. Wild açaí{' '}
-          <em>(Euterpe precatoria)</em> grows naturally under Bolivia&apos;s Amazon
-          forest and has been harvested by riverside communities for generations.
-          When sourced from intact agroforestry systems, it becomes one of the few
-          high-value products that is genuinely better — ecologically,
-          agronomically, and economically — when the forest is kept intact.
-        </p>
-        <p>
-          It is also a product with proven global demand, established use in cafés
-          and wellness environments, and a quality differential legible to
-          professional buyers. That combination is what makes it the right first
-          product for VivaTTerra.
+          I saw an opportunity to help build a market for a value-added product:
+          freeze-dried açaí, processed at origin. Why açaí specifically &mdash;
+          and why it&apos;s the right place to start &mdash; has its own case;
+          you&apos;ll find it in full under Why It Matters.
         </p>
         <p className="row-statement">
           Açaí is where we begin, and it is where we build.
