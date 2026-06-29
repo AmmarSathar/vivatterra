@@ -32,3 +32,6 @@ Thumbs.db
 
 # Misc
 npm-debug.log*
+
+# Generated content dump — re-run scripts/extract-content.js to regenerate
+website-content-dump.md
