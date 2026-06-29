@@ -122,27 +122,19 @@ export default function OurFirstProduct() {
             </div>
             <div className="ofp-detail-row">
               <dt>Harvested By</dt>
-              <dd>Carmen Pecha, Tacana I Indigenous Territory, Bolivia</dd>
+              <dd>Carmen Pecha community, Tacana I Indigenous Territory, Bolivia</dd>
             </div>
             <div className="ofp-detail-row">
               <dt>Origin</dt>
-              <dd>Wild-harvested in the Bolivian Amazon Rainforest</dd>
+              <dd>Ixiamas, TCO Tacana I &mdash; Amboró&ndash;Madidi corridor, Bolivia</dd>
             </div>
             <div className="ofp-detail-row">
               <dt>Processing</dt>
               <dd>Freeze-dried and finely milled near the harvest site in Ixiamas, Bolivia</dd>
             </div>
             <div className="ofp-detail-row">
-              <dt>Project Partner</dt>
-              <dd>Samay O2 Amazon Recovery</dd>
-            </div>
-            <div className="ofp-detail-row">
               <dt>Available Format</dt>
               <dd>250 g bag</dd>
-            </div>
-            <div className="ofp-detail-row">
-              <dt>Certification</dt>
-              <dd>Certified Organic</dd>
             </div>
             </dl>
           </div>
