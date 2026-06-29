@@ -84,6 +84,35 @@ export default function WhyItMatters() {
 
       <section className="section">
         <div className="container-narrow">
+          <h2>This isn&rsquo;t an abstract argument.</h2>
+          <p>
+            In the same stretch of forest our açaí comes from, a different crop tells the other
+            half of the story. Since 2016, a state-backed sugarcane operation has cleared thousands
+            of hectares inside Tacana territory, pushing out the wild palm stands &mdash; açaí and
+            majo among them &mdash; that families there had always depended on.<sup className="cite-ref">2</sup>{' '}
+            Most communities took the deal because the pandemic cut off the tourism income they had
+            been counting on instead. Independent reporting has found many are now carrying years of
+            land-clearing debt against harvests that often don&rsquo;t cover even half their annual
+            expenses.
+          </p>
+          <p>
+            This is the choice agroforestry economics has to outcompete &mdash; not
+            &ldquo;cane is bad,&rdquo; but &ldquo;cane is what&rsquo;s available when nothing else
+            pays enough.&rdquo; That&rsquo;s the gap we exist to close.
+          </p>
+          <ol className="citations">
+            <li>
+              Gil, K. &amp; Acu&ntilde;a, R. (2021).{' '}
+              <em>&ldquo;El cultivo de ca&ntilde;a de az&uacute;car deforesta territorio
+              ind&iacute;gena en la Amazon&iacute;a boliviana.&rdquo;</em>{' '}
+              openDemocracy / La Brava, with the Pulitzer Center&rsquo;s Rainforest Journalism Fund.
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section className="section section-cream">
+        <div className="container-narrow">
           <h2>What this means if you are a buyer</h2>
           <p>
             Sourcing from vivaTTerra does not require you to compromise on quality or justify a premium
