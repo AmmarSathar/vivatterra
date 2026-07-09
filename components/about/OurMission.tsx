@@ -298,7 +298,7 @@ export default function OurMission() {
           <article className="person-card">
             <div className="person-photo">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/Photo/founders/Founder-Fabricio-Photo.webp" alt="Fabrizio Colombo Fiore" />
+              <img src="/Photo/founders/Fabrizio_profile_photo.webp" alt="Fabrizio Colombo Fiore" />
             </div>
             <h4 className="person-name">Fabrizio Colombo Fiore</h4>
             <p className="person-role">Co-Founder</p>
