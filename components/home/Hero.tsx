@@ -59,7 +59,7 @@ export default function Hero() {
           draggable={false}
         />
         <p ref={tagRef} className="hero-fs-tagline" style={{ opacity: 0 }}>
-          Gifts from living ecosystems.
+          Gifts from living ecosystems
         </p>
       </div>
 

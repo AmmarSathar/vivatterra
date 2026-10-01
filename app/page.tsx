@@ -3,8 +3,7 @@ import Hero from '@/components/home/Hero';
 import CardStack from '@/components/home/CardStack';
 import RealFood from '@/components/home/RealFood';
 import OurFirstProduct from '@/components/home/OurFirstProduct';
-import WhereItsFrom from '@/components/home/WhereItsFrom';
-import Harvester from '@/components/home/Harvester';
+import WhyAcai from '@/components/home/WhyAcai';
 import RealFoodPower from '@/components/home/RealFoodPower';
 import JoinCTA from '@/components/JoinCTA';
 
@@ -24,8 +23,7 @@ export default function HomePage() {
         <CardStack>
           <RealFood />
           <OurFirstProduct />
-          <WhereItsFrom />
-          <Harvester />
+          <WhyAcai />
         </CardStack>
       </div>
       <div className="home-bottom-glow" aria-hidden="true" />

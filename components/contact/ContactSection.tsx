@@ -64,8 +64,7 @@ export default function ContactSection() {
             );
           };
 
-          revealLines(section.querySelector<HTMLElement>('.contact-intro'));
-          revealLines(section.querySelector<HTMLElement>('.contact-title'), '-=0.5');
+          revealLines(section.querySelector<HTMLElement>('.contact-title'));
 
           tl.from(
             section.querySelectorAll('.contact-direct li'),
@@ -102,7 +101,7 @@ export default function ContactSection() {
         // nothing can be left invisible. A completed entrance is unaffected.
         const safetyTimer = window.setTimeout(() => {
           const els = section.querySelectorAll<HTMLElement>(
-            '.contact-intro, .contact-title, .gt-line, .contact-direct li, .gt-field, .gt-underline, .gt-divider, .gt-submit'
+            '.contact-title, .gt-line, .contact-direct li, .gt-field, .gt-underline, .gt-divider, .gt-submit'
           );
           gsap.killTweensOf(els);
           gsap.set(els, { clearProps: 'transform,opacity,visibility' });
@@ -148,15 +147,9 @@ export default function ContactSection() {
   return (
     <section className="contact-page" ref={sectionRef}>
       <div className="contact-shell">
-        <p className="contact-intro">
-          You received our 40&nbsp;g sample because we believe the product fits
-          with your business. If you find this interesting and inspiring, we want
-          to hear from you.
-        </p>
-
         <div className="contact-inner">
           <div className="contact-left">
-            <h1 className="contact-title">Go on, Give us a squeeze</h1>
+            <h1 className="contact-title">Give us a shout! We&rsquo;re all ears.</h1>
             <ul className="contact-direct">
               <li>
                 <a href="mailto:fabrizio@vivatterra.com">
