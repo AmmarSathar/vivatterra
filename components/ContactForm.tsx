@@ -157,7 +157,7 @@ export default function ContactForm() {
 
       <div className="form-footer">
         <button type="submit" className="btn btn-primary" disabled={submitting}>
-          {submitting ? 'Sending…' : <>Send — we&apos;ll be in touch <span className="btn-arrow">→</span></>}
+          {submitting ? 'Sending…' : <>Send, we&apos;ll be in touch <span className="btn-arrow">→</span></>}
         </button>
         <p className="form-note">
           We do not share your information. We will respond within 2 business days.

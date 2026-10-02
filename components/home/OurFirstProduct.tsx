@@ -130,7 +130,7 @@ export default function OurFirstProduct() {
             </div>
             <div className="ofp-detail-row">
               <dt>Origin</dt>
-              <dd>Ixiamas, TCO Tacana I &mdash; Amboró&ndash;Madidi corridor, Bolivia</dd>
+              <dd>Ixiamas, TCO Tacana I, Amboró&ndash;Madidi corridor, Bolivia</dd>
             </div>
             <div className="ofp-detail-row">
               <dt>Processing</dt>

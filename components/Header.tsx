@@ -31,7 +31,7 @@ export default function Header() {
         </div>
 
         <div className="site-header-col site-header-col--center">
-          <Link href="/" className="site-header-tt" aria-label="vivaTTerra — home" onClick={(e) => navigate(e, '/')}>
+          <Link href="/" className="site-header-tt" aria-label="vivaTTerra, home" onClick={(e) => navigate(e, '/')}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/TT-logo-white.svg" alt="" className="site-header-tt-img" draggable={false} />
           </Link>

@@ -40,10 +40,9 @@ export default function WhyAcai() {
 
         <p className="why-statement">Economic value without clearing the forest.</p>
         <p className="why-body">
-          Açaí creates economic value from a living forest. Unlike land uses that depend on
-          clearing forest to generate income, it is harvested from naturally occurring and
-          managed palms while the ecosystem stays intact &mdash; so local communities earn
-          from the forest&rsquo;s continued health, not its conversion.
+          Açaí is harvested from naturally occurring and managed açaí palms; keeping the
+          ecosystem intact so local communities can earn from the forest&rsquo;s continued
+          health and prosperity, rather than from its conversion.
         </p>
 
         <div className="why-pair">

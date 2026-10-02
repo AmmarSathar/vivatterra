@@ -120,13 +120,33 @@ export default function OurMission() {
         </p>
       </Row>
 
-      <Row index="(04)" title="Agroforestry benefits" tone="cream">
+      <Row
+        index="(04)"
+        title={
+          <span className="title-long">
+            <span>Why Agroforestry</span> <span>as land use</span> <span>solves this problem</span>
+          </span>
+        }
+        tone="cream"
+      >
         <p>
-          Agroforestry produces food while revitalizing the natural systems of the land;
-          building healthier soils, storing carbon, protecting water, supporting
-          biodiversity, and making landscapes more resilient to drought, heat, and
-          erosion.
+          Agroforestry produces food{' '}
+          <strong>(just like the a&ccedil;a&iacute; you are enjoying)</strong> while
+          revitalizing the natural systems of the land; building healthier soils, storing
+          carbon, protecting water, supporting biodiversity, and making landscapes more
+          resilient to drought, heat, and erosion.
         </p>
+        <figure className="row-photo">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/Photo/agroforestry-canopy.jpg"
+            alt="Açaí palms growing within standing Amazon forest in Bolivia"
+            width={768}
+            height={1024}
+            loading="lazy"
+            draggable={false}
+          />
+        </figure>
       </Row>
 
       <Row index="(05)" title="The Question That Started VivaTTerra" tone="clay">
@@ -162,7 +182,7 @@ export default function OurMission() {
           The problem is not a lack of resources or entrepreneurship. It is that markets for
           many forest products remain fragmented and too limited to compete with established
           extractive industries. VivaTTerra was created around the belief that markets can
-          instead reward stewardship &mdash; making standing, productive ecosystems
+          instead reward stewardship, making standing, productive ecosystems
           economically valuable to the people who depend on them.
         </p>
         <p>

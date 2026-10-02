@@ -8,7 +8,7 @@ export default function WhyItMatters() {
           <div className="callout-quote">
             <p>
               Biodiversity makes land rich, because the land holds ecological value. This transforms land
-              from being a resource — up for extraction — to an ecosystem with a thriving economy.
+              from being a resource, up for extraction, to an ecosystem with a thriving economy.
             </p>
           </div>
         </div>
@@ -21,13 +21,13 @@ export default function WhyItMatters() {
             Wild açaí (<em>Euterpe precatoria</em>) is native to the forests of the Amazon basin. It
             grows naturally under forest canopy and has been harvested by riverside communities for
             generations. When sourced from intact agroforestry systems, it is one of the few high-value
-            products that is genuinely better — agronomically, economically, and ecologically — when the
-            forest is left standing.
+            products that is genuinely better when the forest is left standing: agronomically,
+            economically, and ecologically.
           </p>
           <p>
             It is also a product with proven global demand, established use cases in cafés and wellness
-            environments, and a quality differential legible to professional buyers. That combination —
-            ecological alignment and commercial viability — is what makes it the right first product for
+            environments, and a quality differential legible to professional buyers. That combination,
+            ecological alignment and commercial viability, is what makes it the right first product for
             vivaTTerra.
           </p>
         </div>
@@ -54,15 +54,15 @@ export default function WhyItMatters() {
           <p>
             In the same stretch of forest our açaí comes from, a different crop tells the other
             half of the story. Since 2016, a state-backed sugarcane operation has cleared thousands
-            of hectares inside Tacana territory, pushing out the wild palm stands &mdash; açaí and
-            majo among them &mdash; that families there had always depended on.<sup className="cite-ref">2</sup>{' '}
+            of hectares inside Tacana territory, pushing out the wild palm stands, açaí and
+            majo among them, that families there had always depended on.<sup className="cite-ref">2</sup>{' '}
             Most communities took the deal because the pandemic cut off the tourism income they had
             been counting on instead. Independent reporting has found many are now carrying years of
             land-clearing debt against harvests that often don&rsquo;t cover even half their annual
             expenses.
           </p>
           <p>
-            This is the choice agroforestry economics has to outcompete &mdash; not
+            This is the choice agroforestry economics has to outcompete: not
             &ldquo;cane is bad,&rdquo; but &ldquo;cane is what&rsquo;s available when nothing else
             pays enough.&rdquo; That&rsquo;s the gap we exist to close.
           </p>
@@ -85,7 +85,7 @@ export default function WhyItMatters() {
             that your customers won&apos;t understand.
           </p>
           <p>
-            What it does mean is that your purchasing decision is legible further up the chain — to
+            What it does mean is that your purchasing decision is legible further up the chain, to
             producers managing land regeneratively, to communities whose livelihoods are tied to those
             systems, and to the land itself.
           </p>

@@ -15,7 +15,7 @@ export default function OurStory() {
             </p>
           </div>
           <p>
-            vivaTTerra was built on the premise that this can change — not through pressure alone, but
+            vivaTTerra was built on the premise that this can change: not through pressure alone, but
             through markets. Specifically, through supply chains that make intact forests and regenerative
             land use economically competitive with extraction.
           </p>
@@ -30,14 +30,14 @@ export default function OurStory() {
             The forest management plan that governs this harvest didn&rsquo;t appear on its own.
             From 2012 to 2019, a Bolivian government initiative, backed by the UNDP and the
             Global Environment Facility, worked with Tacana communities in this corridor to
-            formalise non-timber forest management &mdash; the legal and institutional groundwork
+            formalise non-timber forest management: the legal and institutional groundwork
             that makes it possible to harvest açaí from standing forest rather than cleared
             land.<sup className="cite-ref">1</sup>
           </p>
           <p>
             That programme has since concluded. We are not affiliated with it, and we do not
-            claim it as our supply chain. What it left behind &mdash; the management plan, and
-            CIPTA&rsquo;s role in governing it &mdash; is what the harvest still runs on today.
+            claim it as our supply chain. What it left behind, the management plan, and
+            CIPTA&rsquo;s role in governing it, is what the harvest still runs on today.
           </p>
           <ol className="citations">
             <li>

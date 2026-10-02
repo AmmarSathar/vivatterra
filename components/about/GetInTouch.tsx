@@ -9,7 +9,7 @@ export default function GetInTouch() {
             <div className="eyebrow">Express interest</div>
             <h2>Tell us who you are.</h2>
             <p className="lead">
-              Fill out the form below — it takes under a minute. We will follow up by email with product
+              Fill out the form below. It takes under a minute. We will follow up by email with product
               details, current pricing, and next steps. No commitment required at this stage.
             </p>
           </div>
