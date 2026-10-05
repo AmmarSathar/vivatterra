@@ -1,13 +1,23 @@
 'use client';
 
 import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { useI18n, type MessageKey } from '@/lib/i18n';
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Server messages we know how to show in the visitor's language.
+const SERVER_ERRORS: Record<string, MessageKey> = {
+  'Name and email are required.': 'contact.err.required',
+  'Please enter a valid email address.': 'contact.err.email',
+};
 
 export default function ContactSection() {
+  const { lang, t, rich } = useI18n();
   const sectionRef = useRef<HTMLElement>(null);
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState('');
+  const [errorKey, setErrorKey] = useState<MessageKey | ''>('');
 
   const set = (key: keyof typeof form, value: string) =>
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -64,8 +74,7 @@ export default function ContactSection() {
             );
           };
 
-          revealLines(section.querySelector<HTMLElement>('.contact-intro'));
-          revealLines(section.querySelector<HTMLElement>('.contact-title'), '-=0.5');
+          revealLines(section.querySelector<HTMLElement>('.contact-title'));
 
           tl.from(
             section.querySelectorAll('.contact-direct li'),
@@ -102,7 +111,7 @@ export default function ContactSection() {
         // nothing can be left invisible. A completed entrance is unaffected.
         const safetyTimer = window.setTimeout(() => {
           const els = section.querySelectorAll<HTMLElement>(
-            '.contact-intro, .contact-title, .gt-line, .contact-direct li, .gt-field, .gt-underline, .gt-divider, .gt-submit'
+            '.contact-title, .gt-line, .contact-direct li, .gt-field, .gt-underline, .gt-divider, .gt-submit'
           );
           gsap.killTweensOf(els);
           gsap.set(els, { clearProps: 'transform,opacity,visibility' });
@@ -123,8 +132,16 @@ export default function ContactSection() {
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setErrorKey('');
+    if (!form.name.trim() || !form.email.trim()) {
+      setErrorKey('contact.err.required');
+      return;
+    }
+    if (!EMAIL_RE.test(form.email.trim())) {
+      setErrorKey('contact.err.email');
+      return;
+    }
     setSubmitting(true);
-    setError('');
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
@@ -133,13 +150,12 @@ export default function ContactSection() {
       });
       if (!res.ok) {
         const data = (await res.json().catch(() => ({}))) as { error?: string };
-        throw new Error(data.error || 'Something went wrong. Please try again.');
+        setErrorKey(SERVER_ERRORS[data.error ?? ''] ?? 'contact.err.generic');
+        return;
       }
       setSubmitted(true);
-    } catch (err) {
-      setError(
-        err instanceof Error ? err.message : 'Something went wrong. Please try again.'
-      );
+    } catch {
+      setErrorKey('contact.err.generic');
     } finally {
       setSubmitting(false);
     }
@@ -148,15 +164,10 @@ export default function ContactSection() {
   return (
     <section className="contact-page" ref={sectionRef}>
       <div className="contact-shell">
-        <p className="contact-intro">
-          You received our 40&nbsp;g sample because we believe the product fits
-          with your business. If you find this interesting and inspiring, we want
-          to hear from you.
-        </p>
-
         <div className="contact-inner">
           <div className="contact-left">
-            <h1 className="contact-title">Go on, Give us a squeeze</h1>
+            {/* Keyed so a language change swaps in a fresh, unsplit title node. */}
+            <h1 className="contact-title" key={lang}>{t('contact.title')}</h1>
             <ul className="contact-direct">
               <li>
                 <a href="mailto:fabrizio@vivatterra.com">
@@ -196,18 +207,15 @@ export default function ContactSection() {
 
         {submitted ? (
           <div className="gt-success">
-            <h2>Thank you.</h2>
-            <p>
-              We received your message and will reply to{' '}
-              <strong>{form.email || 'you'}</strong> within two business days.
-            </p>
+            <h2>{t('contact.successTitle')}</h2>
+            <p>{rich('contact.successBody', { email: form.email || t('contact.successFallback') })}</p>
           </div>
         ) : (
           <form className="contact-form-gt" onSubmit={handleSubmit} noValidate>
             <div className="contact-row">
               <div className="gt-field">
                 <label htmlFor="gt-name">
-                  Name <span aria-hidden="true">✱</span>
+                  {t('contact.name')} <span aria-hidden="true">✱</span>
                 </label>
                 <div className="gt-input-wrap">
                   <input
@@ -215,7 +223,7 @@ export default function ContactSection() {
                     type="text"
                     required
                     autoComplete="name"
-                    placeholder="Jane Smith"
+                    placeholder={t('contact.namePlaceholder')}
                     value={form.name}
                     onChange={(e) => set('name', e.target.value)}
                   />
@@ -224,7 +232,7 @@ export default function ContactSection() {
               </div>
               <div className="gt-field">
                 <label htmlFor="gt-email">
-                  Email <span aria-hidden="true">✱</span>
+                  {t('contact.email')} <span aria-hidden="true">✱</span>
                 </label>
                 <div className="gt-input-wrap">
                   <input
@@ -232,7 +240,7 @@ export default function ContactSection() {
                     type="email"
                     required
                     autoComplete="email"
-                    placeholder="jane@vivatterra.com"
+                    placeholder={t('contact.emailPlaceholder')}
                     value={form.email}
                     onChange={(e) => set('email', e.target.value)}
                   />
@@ -242,12 +250,12 @@ export default function ContactSection() {
             </div>
 
             <div className="gt-field">
-              <label htmlFor="gt-message">Message</label>
+              <label htmlFor="gt-message">{t('contact.message')}</label>
               <div className="gt-input-wrap">
                 <textarea
                   id="gt-message"
                   rows={5}
-                  placeholder="Message"
+                  placeholder={t('contact.messagePlaceholder')}
                   value={form.message}
                   onChange={(e) => set('message', e.target.value)}
                 />
@@ -257,14 +265,14 @@ export default function ContactSection() {
 
             <hr className="gt-divider" />
 
-            {error && (
+            {errorKey && (
               <p className="gt-error" role="alert">
-                {error}
+                {t(errorKey)}
               </p>
             )}
 
             <button type="submit" className="gt-submit" disabled={submitting}>
-              {submitting ? 'Sending…' : 'Submit'}
+              {submitting ? t('contact.sending') : t('contact.submit')}
             </button>
           </form>
         )}

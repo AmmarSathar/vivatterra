@@ -37,7 +37,7 @@ export default function AboutHero() {
         </h1>
         <p className="about-hero-body" data-hero style={{ opacity: 0 }}>
           vivaTTerra is a social purpose enterprise building markets for locally processed
-          agroforestry products from living ecosystems — and what that means for the land,
+          agroforestry products from living ecosystems, and what that means for the land,
           the communities, and your business.
         </p>
       </div>

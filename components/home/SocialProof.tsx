@@ -38,7 +38,7 @@ export default function SocialProof() {
                   maxWidth: 'none',
                 }}
               >
-                Testimonial from café or wellness buyer — coming soon.
+                Testimonial from café or wellness buyer, coming soon.
               </p>
               <div>
                 <p style={{ fontSize: '13px', fontWeight: 700, color: 'var(--vt-ink-900)', margin: '0 0 2px' }}>

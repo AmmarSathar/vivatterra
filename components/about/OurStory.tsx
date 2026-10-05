@@ -15,7 +15,7 @@ export default function OurStory() {
             </p>
           </div>
           <p>
-            vivaTTerra was built on the premise that this can change — not through pressure alone, but
+            vivaTTerra was built on the premise that this can change: not through pressure alone, but
             through markets. Specifically, through supply chains that make intact forests and regenerative
             land use economically competitive with extraction.
           </p>
@@ -24,49 +24,35 @@ export default function OurStory() {
 
       <section className="section section-cream">
         <div className="container-narrow">
-          <h2>What the name means</h2>
+          <div className="eyebrow">Traceability</div>
+          <h2>How the açaí got here</h2>
           <p>
-            The name comes from two Latin roots: <em>vivat</em> — long live, may it live — and{' '}
-            <em>terra</em> — earth, land, soil.
-          </p>
-          <p className="emphasis-line">Together: let the land live.</p>
-          <p>
-            It is not a slogan. It is the operating principle behind every sourcing decision, every
-            supplier relationship, and every product we bring to market.
-          </p>
-          <p>
-            The double TT is symbolic for grafting — a horticultural technique in which two plants are
-            joined so they grow as one. This represents vivaTTerra&apos;s mission that ecosystem health and a
-            viable economy are inseparable and must grow together.
+            The forest management plan that governs this harvest didn&rsquo;t appear on its own.
+            From 2012 to 2019, a Bolivian government initiative, backed by the UNDP and the
+            Global Environment Facility, worked with Tacana communities in this corridor to
+            formalise non-timber forest management: the legal and institutional groundwork
+            that makes it possible to harvest açaí from standing forest rather than cleared
+            land.<sup className="cite-ref">1</sup>
           </p>
           <p>
-            Consumer choice matters more than we tend to believe. Every purchase is a signal that shapes
-            how products are made, how land is used, and who captures value. At its core, vivaTTerra is
-            about that connection — producers who care for the land make these foods possible, and
-            consumers who choose them help sustain that care.
+            That programme has since concluded. We are not affiliated with it, and we do not
+            claim it as our supply chain. What it left behind, the management plan, and
+            CIPTA&rsquo;s role in governing it, is what the harvest still runs on today.
           </p>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container-narrow">
-          <h2>How we work</h2>
-          <p>
-            We work directly with the producers and processors of the products we source. We are a small,
-            operationally focused team bootstrapping this infrastructure carefully and incrementally —
-            prioritizing strong relationships, product integrity, and long-term viability over rapid
-            expansion.
-          </p>
-          <p>
-            What we are building is more than a product supply chain: it is consistent sourcing capacity,
-            deeper producer partnerships, and the commercial relationships necessary to grow this from a
-            validated operation into durable market infrastructure.
-          </p>
-          <p>
-            That infrastructure is the first step toward the broader vivaTTerra platform: a marketplace
-            for important food products built on end-to-end data integrity, designed to provide technical
-            support to producers and complete transparency to consumers.
-          </p>
+          <ol className="citations">
+            <li>
+              UNDP (2016). <em>Mid-Term Evaluation, Conservation of Biodiversity through
+              Sustainable Forest Management by Local Communities</em> (PIMS 4197).{' '}
+              <a
+                href="https://erc.undp.org/evaluation/documents/download/9970"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                erc.undp.org
+              </a>
+              {' '}· UNDP (2019). <em>Final Evaluation</em>, same project.
+            </li>
+          </ol>
 
           <div className="section-cta">
             <h3>We want to hear from you.</h3>

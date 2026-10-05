@@ -6,7 +6,9 @@
       "Bash(npx tsc *)",
       "Bash(echo \"exit: $?\")",
       "Bash(git add *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(git stash *)",
+      "Bash(git push *)"
     ]
   }
 }
