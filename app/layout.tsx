@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import TransitionOverlay from '@/components/TransitionOverlay';
 import SmoothScroll from '@/components/SmoothScroll';
 import SiteLoader from '@/components/SiteLoader';
+import { LanguageProvider } from '@/lib/i18n';
 
 const lato = Lato({
   weight: ['100', '300', '400', '700', '900'],
@@ -49,12 +50,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${lato.variable} ${poppins.variable} ${sourceSerif4.variable}`}
     >
       <body>
-        <SiteLoader />
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <TransitionOverlay />
-        <SmoothScroll />
+        <LanguageProvider>
+          <SiteLoader />
+          <Header />
+          <main>{children}</main>
+          <Footer />
+          <TransitionOverlay />
+          <SmoothScroll />
+        </LanguageProvider>
       </body>
     </html>
   );

@@ -3,6 +3,7 @@
 import { useCallback } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useI18n } from '@/lib/i18n';
 
 const COVER_MS = 850; // matches the header's page-transition cover
 
@@ -13,11 +14,12 @@ const COVER_MS = 850; // matches the header's page-transition cover
  */
 export default function JoinCTA({
   href = '/contact',
-  text = 'Join the mission.',
+  text,
 }: {
   href?: string;
   text?: string;
 }) {
+  const { t } = useI18n();
   const router = useRouter();
 
   const navigate = useCallback(
@@ -39,7 +41,7 @@ export default function JoinCTA({
     <section className="join-cta">
       <Link className="join-cta-link" href={href} onClick={navigate}>
         <span className="join-cta-inner">
-          <span className="join-cta-text">{text}</span>
+          <span className="join-cta-text">{text ?? t('cta.join')}</span>
           <span className="join-cta-arrow" aria-hidden="true">
             <svg
               viewBox="0 0 24 24"

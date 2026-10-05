@@ -1,8 +1,10 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { useI18n } from '@/lib/i18n';
 
-export default function RealFood() {
+function RealFoodInner() {
+  const { t } = useI18n();
   const sectionRef = useRef<HTMLElement>(null);
   const headRef = useRef<HTMLHeadingElement>(null);
   const textRef = useRef<HTMLParagraphElement>(null);
@@ -59,14 +61,18 @@ export default function RealFood() {
     <section className="realfood-static" ref={sectionRef}>
       <div className="container-narrow">
         <h2 className="realfood-static-heading" ref={headRef} style={{ opacity: 0 }}>
-          What is VivaTTerra?
+          {t('home.realfood.title')}
         </h2>
         <p className="realfood-static-text" ref={textRef} style={{ opacity: 0 }}>
-          VivaTTerra is an ecosystem-driven marketplace. Its innovation lies in data
-          integrity and ecological impact as success metrics. The success of this
-          innovation bridges the gap between producer and consumer agency.
+          {t('home.realfood.text')}
         </p>
       </div>
     </section>
   );
+}
+
+/** Remounts on language change so SplitText re-splits the new copy cleanly. */
+export default function RealFood() {
+  const { lang } = useI18n();
+  return <RealFoodInner key={lang} />;
 }

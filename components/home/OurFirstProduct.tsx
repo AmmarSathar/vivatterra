@@ -2,8 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useReveal } from '@/hooks/useReveal';
+import { useI18n } from '@/lib/i18n';
 
 export default function OurFirstProduct() {
+  const { lang, t, rich } = useI18n();
   const ref = useReveal<HTMLElement>();
   const cardRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
@@ -53,7 +55,7 @@ export default function OurFirstProduct() {
     });
 
     return () => kill?.();
-  }, [ref]);
+  }, [ref, lang]);
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     const el = cardRef.current;
@@ -79,7 +81,7 @@ export default function OurFirstProduct() {
         type="button"
         role="switch"
         aria-checked={mode === 'light'}
-        aria-label="Switch product view between dark and light"
+        aria-label={t('home.product.toggleAria')}
         className="ofp-mode-toggle"
         onClick={() => setMode((m) => (m === 'dark' ? 'light' : 'dark'))}
       >
@@ -98,11 +100,12 @@ export default function OurFirstProduct() {
       </button>
 
       <div className="container-narrow">
-        <div className="section-header on-deep" ref={headerRef}>
-          <div className="eyebrow eyebrow-on-deep">Our first product</div>
-          <h2>Wild-Harvested Açaí Powder</h2>
+        {/* Keyed so a language change swaps in fresh, unsplit heading nodes. */}
+        <div className="section-header on-deep" ref={headerRef} key={lang}>
+          <div className="eyebrow eyebrow-on-deep">{t('home.product.eyebrow')}</div>
+          <h2>{t('home.product.title')}</h2>
           <p className="ofp-swipe-hint" aria-hidden="true">
-            Swipe for details <span>&rarr;</span>
+            {t('home.product.swipe')} <span>&rarr;</span>
           </p>
         </div>
 
@@ -112,33 +115,31 @@ export default function OurFirstProduct() {
           onPointerLeave={resetTilt}
         >
           <div className="ofp-card" ref={cardRef}>
-            <h3 className="ofp-details-title">Product Details</h3>
+            <h3 className="ofp-details-title">{t('home.product.detailsTitle')}</h3>
             <dl className="ofp-detail-list">
             <div className="ofp-detail-row">
-              <dt>Species</dt>
-              <dd>
-                Açaí <em>(Euterpe precatoria)</em>
-              </dd>
+              <dt>{t('home.product.species')}</dt>
+              <dd>{rich('home.product.speciesValue')}</dd>
             </div>
             <div className="ofp-detail-row">
-              <dt>Harvested By</dt>
-              <dd>Carmen Pecha community, Tacana I Indigenous Territory, Bolivia</dd>
+              <dt>{t('home.product.harvestedBy')}</dt>
+              <dd>{t('home.product.harvestedByValue')}</dd>
             </div>
             <div className="ofp-detail-row">
-              <dt>Project Partner</dt>
-              <dd>Samay O2 &ndash; Amazon Recovery</dd>
+              <dt>{t('home.product.partner')}</dt>
+              <dd>{t('home.product.partnerValue')}</dd>
             </div>
             <div className="ofp-detail-row">
-              <dt>Origin</dt>
-              <dd>Ixiamas, TCO Tacana I, Amboró&ndash;Madidi corridor, Bolivia</dd>
+              <dt>{t('home.product.origin')}</dt>
+              <dd>{t('home.product.originValue')}</dd>
             </div>
             <div className="ofp-detail-row">
-              <dt>Processing</dt>
-              <dd>Freeze-dried and finely milled near the harvest site in Ixiamas, Bolivia</dd>
+              <dt>{t('home.product.processing')}</dt>
+              <dd>{t('home.product.processingValue')}</dd>
             </div>
             <div className="ofp-detail-row">
-              <dt>Available Format</dt>
-              <dd>250 g bag</dd>
+              <dt>{t('home.product.format')}</dt>
+              <dd>{t('home.product.formatValue')}</dd>
             </div>
             </dl>
           </div>

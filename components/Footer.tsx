@@ -1,12 +1,16 @@
-import Link from 'next/link';
+'use client';
 
-const NAV = [
-  { label: 'Home', href: '/' },
-  { label: 'Mission', href: '/about' },
-  { label: 'Contact', href: '/contact' },
-];
+import Link from 'next/link';
+import { useI18n } from '@/lib/i18n';
 
 export default function Footer() {
+  const { t } = useI18n();
+  const NAV = [
+    { label: t('footer.home'), href: '/' },
+    { label: t('footer.mission'), href: '/about' },
+    { label: t('footer.contact'), href: '/contact' },
+  ];
+
   return (
     <footer className="footer">
       <div className="container">
@@ -19,12 +23,12 @@ export default function Footer() {
               alt="VivaTTerra"
               className="footer-logo"
             />
-            <p className="footer-tagline">Let the land live.</p>
+            <p className="footer-tagline">{t('footer.tagline')}</p>
           </div>
 
           {/* Column 2 — Navigation */}
-          <nav className="footer-col" aria-label="Footer navigation">
-            <h5>Navigation</h5>
+          <nav className="footer-col" aria-label={t('footer.navAria')}>
+            <h5>{t('footer.navigation')}</h5>
             <ul>
               {NAV.map((link) => (
                 <li key={link.label}>
@@ -36,7 +40,7 @@ export default function Footer() {
 
           {/* Column 3 — Contact */}
           <div className="footer-col">
-            <h5>Contact</h5>
+            <h5>{t('footer.contact')}</h5>
             <ul className="footer-contact">
               <li>
                 <a href="mailto:fabrizio@vivatterra.com">
@@ -78,7 +82,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-meta">
-          <span>© 2026 VivaTTerra. All rights reserved.</span>
+          <span>{t('footer.rights')}</span>
         </div>
       </div>
     </footer>

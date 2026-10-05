@@ -2269,4 +2269,47 @@ body.is-loading {
   .people-grid { grid-template-columns: 1fr; gap: 36px; }
   .person-photo { max-width: 360px; }
   .mission-row-title { font-size: clamp(40px, 12vw, 80px); }
+  /* FR/ES words run longer (e.g. "l'agroforesterie"); keep them inside the viewport. */
+  html[lang="fr"] .mission-row-title,
+  html[lang="es"] .mission-row-title { font-size: clamp(32px, 9.5vw, 80px); }
+}
+
+/* ============================================================
+   LANGUAGE SWITCHER — compact EN / FR / ES in the header
+   ============================================================ */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: white;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+}
+.lang-switch-item { display: inline-flex; align-items: center; }
+.lang-switch-sep { opacity: 0.4; margin: 0 1px; }
+.lang-switch-btn {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 4px 3px;
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  text-shadow: inherit;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 200ms ease;
+}
+.lang-switch-btn:hover { opacity: 0.9; }
+.lang-switch-btn[aria-pressed='true'] { opacity: 1; }
+.lang-switch-btn:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+@media (max-width: 900px) {
+  .site-header-col--right { gap: 10px; }
+  .lang-switch { font-size: 10px; letter-spacing: 0.04em; }
 }

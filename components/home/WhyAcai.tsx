@@ -4,6 +4,7 @@ import { useCallback } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Snowflake, Sparkles } from 'lucide-react';
+import { useI18n } from '@/lib/i18n';
 
 const COVER_MS = 850; // matches the header's page-transition cover
 
@@ -12,6 +13,7 @@ const COVER_MS = 850; // matches the header's page-transition cover
  * value, then nutrition + preserved quality. The evidence lives on /carmen-pecha.
  */
 export default function WhyAcai() {
+  const { t } = useI18n();
   const router = useRouter();
 
   const go = useCallback(
@@ -30,39 +32,32 @@ export default function WhyAcai() {
   return (
     <section className="why-section" data-lenis-prevent>
       <div className="why-inner">
-        <h2 className="why-title">Why Açaí?</h2>
+        <h2 className="why-title">{t('home.why.title')}</h2>
 
-        <ol className="why-flow" aria-label="How açaí keeps the forest standing">
-          <li>Açaí</li>
-          <li>Forest remains intact</li>
-          <li>Local economic value</li>
+        <ol className="why-flow" aria-label={t('home.why.flowAria')}>
+          <li>{t('home.why.flow1')}</li>
+          <li>{t('home.why.flow2')}</li>
+          <li>{t('home.why.flow3')}</li>
         </ol>
 
-        <p className="why-statement">Economic value without clearing the forest.</p>
-        <p className="why-body">
-          Açaí is harvested from naturally occurring and managed açaí palms; keeping the
-          ecosystem intact so local communities can earn from the forest&rsquo;s continued
-          health and prosperity, rather than from its conversion.
-        </p>
+        <p className="why-statement">{t('home.why.statement')}</p>
+        <p className="why-body">{t('home.why.body')}</p>
 
         <div className="why-pair">
           <div className="why-point">
             <Sparkles size={26} strokeWidth={1.25} aria-hidden="true" />
-            <h3>Naturally nutrient-rich</h3>
-            <p>Açaí is naturally rich in antioxidants, fiber and unsaturated fats.</p>
+            <h3>{t('home.why.nutrientTitle')}</h3>
+            <p>{t('home.why.nutrientBody')}</p>
           </div>
           <div className="why-point">
             <Snowflake size={26} strokeWidth={1.25} aria-hidden="true" />
-            <h3>Preserved close to where it grows</h3>
-            <p>
-              Processed close to origin in Ixiamas and freeze-dried to retain its nutritional
-              qualities, flavor and character.
-            </p>
+            <h3>{t('home.why.preservedTitle')}</h3>
+            <p>{t('home.why.preservedBody')}</p>
           </div>
         </div>
 
         <Link href="/carmen-pecha" className="why-link" onClick={go}>
-          Why Carmen Pecha? <span aria-hidden="true">→</span>
+          {t('home.why.link')} <span aria-hidden="true">→</span>
         </Link>
       </div>
     </section>

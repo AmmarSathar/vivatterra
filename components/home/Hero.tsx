@@ -2,8 +2,10 @@
 
 import { useEffect, useRef } from 'react';
 import { TreePine } from 'lucide-react';
+import { useI18n } from '@/lib/i18n';
 
 export default function Hero() {
+  const { t } = useI18n();
   const wordRef  = useRef<HTMLImageElement>(null);
   const tagRef   = useRef<HTMLParagraphElement>(null);
   const arrowRef = useRef<HTMLDivElement>(null);
@@ -59,7 +61,7 @@ export default function Hero() {
           draggable={false}
         />
         <p ref={tagRef} className="hero-fs-tagline" style={{ opacity: 0 }}>
-          Gifts from living ecosystems
+          {t('hero.tagline')}
         </p>
       </div>
 

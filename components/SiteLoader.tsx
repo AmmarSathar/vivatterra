@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useI18n } from '@/lib/i18n';
 
 // Keep the loader up long enough for the fill to read, even on a fast load.
 const MIN_VISIBLE_MS = 1500;
@@ -10,6 +11,7 @@ const MAX_VISIBLE_MS = 6000;
 const FADE_MS = 550;
 
 export default function SiteLoader() {
+  const { t } = useI18n();
   const [leaving, setLeaving] = useState(false);
   const [done, setDone] = useState(false);
 
@@ -50,7 +52,7 @@ export default function SiteLoader() {
     <div
       className={`site-loader${leaving ? ' is-leaving' : ''}`}
       role="status"
-      aria-label="Loading"
+      aria-label={t('loader.aria')}
     >
       <div className="site-loader-logo" aria-hidden="true">
         <span className="site-loader-fill" />
