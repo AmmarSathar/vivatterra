@@ -29,11 +29,12 @@ function Row({
   return (
     <section className={`mission-row tone-${tone}${hero ? ' mission-row--hero' : ''}`}>
       <div className="mission-row-inner">
+        {/* Title first in the DOM so headings read in order; the grid areas place it visually. */}
+        <Title className="mission-row-title">{title}</Title>
         <div className="mission-row-body">
           <span className="mission-row-index">{index}</span>
           {children}
         </div>
-        <Title className="mission-row-title">{title}</Title>
       </div>
     </section>
   );
@@ -172,9 +173,9 @@ export default function OurMission() {
           <article className="person-card">
             <div className="person-photo">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/Photo/founders/Fabrizio_profile_photo.webp" alt="Fabrizio Colombo Fiore" />
+              <img src="/Photo/founders/Fabrizio_profile_photo.webp" alt="Fabrizio Colombo Fiore" width={984} height={1025} loading="lazy" decoding="async" />
             </div>
-            <h4 className="person-name">Fabrizio Colombo Fiore</h4>
+            <h3 className="person-name">Fabrizio Colombo Fiore</h3>
             <p className="person-role">{t('about.team.role')}</p>
             <p className="person-creds">{t('about.team.fabrizio.creds')}</p>
             <p className="person-note">{t('about.team.fabrizio.quote')}</p>
@@ -183,9 +184,9 @@ export default function OurMission() {
           <article className="person-card">
             <div className="person-photo">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/Photo/founders/Ammar-founder-photo.webp" alt="Ammar Sathar" />
+              <img src="/Photo/founders/Ammar-founder-photo.webp" alt="Ammar Sathar" width={900} height={900} loading="lazy" decoding="async" />
             </div>
-            <h4 className="person-name">Ammar Sathar</h4>
+            <h3 className="person-name">Ammar Sathar</h3>
             <p className="person-role">{t('about.team.role')}</p>
             <p className="person-creds">{t('about.team.ammar.creds')}</p>
           </article>

@@ -28,7 +28,7 @@ export default function Footer() {
 
           {/* Column 2 — Navigation */}
           <nav className="footer-col" aria-label={t('footer.navAria')}>
-            <h5>{t('footer.navigation')}</h5>
+            <p className="footer-heading">{t('footer.navigation')}</p>
             <ul>
               {NAV.map((link) => (
                 <li key={link.label}>
@@ -40,7 +40,7 @@ export default function Footer() {
 
           {/* Column 3 — Contact */}
           <div className="footer-col">
-            <h5>{t('footer.contact')}</h5>
+            <p className="footer-heading">{t('footer.contact')}</p>
             <ul className="footer-contact">
               <li>
                 <a href="mailto:fabrizio@vivatterra.com">
@@ -83,6 +83,9 @@ export default function Footer() {
 
         <div className="footer-meta">
           <span>{t('footer.rights')}</span>
+          <Link href="/privacy" className="footer-meta-link">
+            {t('footer.privacy')}
+          </Link>
         </div>
       </div>
     </footer>

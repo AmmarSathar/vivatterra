@@ -1,7 +1,11 @@
 'use client';
 
 import { useEffect, useRef, useState, type FormEvent } from 'react';
+import Link from 'next/link';
 import { useI18n, type MessageKey } from '@/lib/i18n';
+
+type Inquiry = 'buyer' | 'origin' | 'strategic';
+const INQUIRIES: Inquiry[] = ['buyer', 'origin', 'strategic'];
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -17,6 +21,13 @@ export default function ContactSection() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [inquiry, setInquiry] = useState<Inquiry | ''>('');
+  // Arriving from a "Register interest" link: ?inquiry=buyer preselects the pathway.
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get('inquiry');
+    if (q && (INQUIRIES as string[]).includes(q)) setInquiry(q as Inquiry);
+  }, []);
+
   const [errorKey, setErrorKey] = useState<MessageKey | ''>('');
 
   const set = (key: keyof typeof form, value: string) =>
@@ -146,7 +157,7 @@ export default function ContactSection() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, inquiryType: inquiry }),
       });
       if (!res.ok) {
         const data = (await res.json().catch(() => ({}))) as { error?: string };
@@ -212,6 +223,42 @@ export default function ContactSection() {
           </div>
         ) : (
           <form className="contact-form-gt" onSubmit={handleSubmit} noValidate>
+            <div className="gt-audience" role="group" aria-label={t('contact.audience.aria')}>
+              <p className="gt-audience-prompt">{t('contact.audience.prompt')}</p>
+              <button
+                type="button"
+                className="gt-audience-primary"
+                aria-pressed={inquiry === 'buyer'}
+                onClick={() => setInquiry(inquiry === 'buyer' ? '' : 'buyer')}
+              >
+                <span className="gt-audience-kicker">{t('contact.audience.buyer.kicker')}</span>
+                <span className="gt-audience-cta">
+                  {t('contact.audience.buyer.cta')} <span aria-hidden="true">→</span>
+                </span>
+                <span className="gt-audience-desc">{t('contact.audience.buyer.desc')}</span>
+              </button>
+              <div className="gt-audience-secondary">
+                {(['origin', 'strategic'] as const).map((k) => (
+                  <button
+                    key={k}
+                    type="button"
+                    className="gt-audience-option"
+                    aria-pressed={inquiry === k}
+                    onClick={() => setInquiry(inquiry === k ? '' : k)}
+                  >
+                    <span className="gt-audience-title">{t(`contact.audience.${k}.title` as MessageKey)}</span>
+                    <span className="gt-audience-desc">{t(`contact.audience.${k}.desc` as MessageKey)}</span>
+                  </button>
+                ))}
+              </div>
+              {inquiry && (
+                <p className="gt-subject" role="status">
+                  <span>{t('contact.subject.label')}:</span>{' '}
+                  {t(`contact.subject.${inquiry}` as MessageKey)}
+                </p>
+              )}
+            </div>
+
             <div className="contact-row">
               <div className="gt-field">
                 <label htmlFor="gt-name">
@@ -274,6 +321,12 @@ export default function ContactSection() {
             <button type="submit" className="gt-submit" disabled={submitting}>
               {submitting ? t('contact.sending') : t('contact.submit')}
             </button>
+
+            <p className="gt-privacy-note">
+              {t('contact.privacy.before')}
+              <Link href="/privacy">{t('contact.privacy.link')}</Link>
+              {t('contact.privacy.after')}
+            </p>
           </form>
         )}
         </div>

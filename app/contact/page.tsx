@@ -1,11 +1,8 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 import ContactSection from '@/components/contact/ContactSection';
 
-export const metadata: Metadata = {
-  title: 'Contact',
-  description:
-    'Get in touch with VivaTTerra: questions about wild açaí, sourcing, or partnering on agroforestry products.',
-};
+export const metadata: Metadata = pageMetadata('contact');
 
 export default function ContactPage() {
   return <ContactSection />;
