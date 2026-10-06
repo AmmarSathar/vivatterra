@@ -109,7 +109,7 @@ export default function CarmenPechaStory() {
   return (
     <div ref={rootRef} className={`wa-page${animate ? ' wa-animate' : ''}`}>
       <div className="wa-inner">
-        {/* SECTION 1 — Where it is, the land-use pressure, what industrial sugarcane changes */}
+        {/* SECTION 1: Carmen Pecha as a productive standing-forest economy */}
         <section className="wa-sec">
           <header className="wa-header wa-reveal">
             <div className="wa-eyebrow">{t('carmen.eyebrow')}</div>
@@ -118,39 +118,47 @@ export default function CarmenPechaStory() {
 
           <div className="wa-split">
             <div className="wa-col">
-              <p className="wa-body wa-reveal">{t('carmen.p1')}</p>
-              <p className="wa-body wa-reveal">{rich('carmen.p2')}</p>
-              <p className="wa-body wa-reveal">{t('carmen.p3')}</p>
-              <p className="wa-body wa-reveal">{t('carmen.p4')}</p>
+              <p className="wa-body wa-reveal">{t('carmen.s1.p1')}</p>
+              <p className="wa-body wa-reveal">{rich('carmen.s1.p2')}</p>
+              <p className="wa-body wa-reveal">{rich('carmen.s1.p3')}</p>
+              <p className="wa-body wa-reveal">{t('carmen.s1.p4')}</p>
             </div>
 
-            <MapFigureView
-              map={MAP_EASBA}
-              onOpen={setLightbox}
-            />
+            <MapFigureView map={MAP_TERRITORY} onOpen={setLightbox} />
           </div>
         </section>
 
-        {/* SECTION 2 — The alternative: forest-based livelihoods */}
+        {/* SECTION 2: the competing land-use model */}
         <section className="wa-sec">
+          <header className="wa-header wa-reveal">
+            <h2 className="wa-h3">{t('carmen.s2.title')}</h2>
+          </header>
+
           <div className="wa-split wa-split--flip">
-            <MapFigureView
-              map={MAP_TERRITORY}
-              onOpen={setLightbox}
-            />
+            <MapFigureView map={MAP_EASBA} onOpen={setLightbox} />
             <div className="wa-col">
-              <h2 className="wa-h3 wa-reveal">{t('carmen.livelihoods.title')}</h2>
-              <p className="wa-body wa-reveal">{rich('carmen.livelihoods.p1')}</p>
-              <p className="wa-body wa-reveal">{t('carmen.livelihoods.p2')}</p>
-              <p className="wa-body wa-reveal">{t('carmen.livelihoods.p3')}</p>
+              <p className="wa-body wa-reveal">{t('carmen.s2.p1')}</p>
+              <p className="wa-body wa-reveal">{rich('carmen.s2.p2')}</p>
+              <p className="wa-body wa-reveal">{t('carmen.s2.p3')}</p>
+              <div className="wa-compare wa-reveal">
+                <div className="wa-compare-item wa-compare-item--forest">
+                  <span className="wa-compare-label">{t('carmen.compare.forest.label')}</span>
+                  <span>{t('carmen.compare.forest.text')}</span>
+                </div>
+                <div className="wa-compare-item">
+                  <span className="wa-compare-label">{t('carmen.compare.conversion.label')}</span>
+                  <span>{t('carmen.compare.conversion.text')}</span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* SECTION 3 — VivaTTerra's response */}
+        {/* SECTION 3: VivaTTerra's response */}
         <section className="wa-sec wa-response">
           <h2 className="wa-h3 wa-reveal">{t('carmen.response.title')}</h2>
           <p className="wa-statement wa-reveal">{t('carmen.response.statement')}</p>
+          <p className="wa-body wa-reveal">{t('carmen.response.p')}</p>
           <div className="wa-reveal">
             <a href={OPENDEMOCRACY_URL} target="_blank" rel="noopener noreferrer" className="wa-link">
               {t('carmen.response.link')}

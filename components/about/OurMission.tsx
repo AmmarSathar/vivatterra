@@ -17,23 +17,26 @@ function Row({
   title,
   tone,
   hero,
+  bodyClass,
   children,
 }: {
   index: string;
   title: ReactNode;
   tone: Tone;
   hero?: boolean;
+  bodyClass?: string;
   children: ReactNode;
 }) {
   const Title = hero ? 'h1' : 'h2';
   return (
     <section className={`mission-row tone-${tone}${hero ? ' mission-row--hero' : ''}`}>
       <div className="mission-row-inner">
-        <div className="mission-row-body">
+        {/* Title first in the DOM so headings read in order; the grid areas place it visually. */}
+        <Title className="mission-row-title">{title}</Title>
+        <div className={`mission-row-body${bodyClass ? ` ${bodyClass}` : ''}`}>
           <span className="mission-row-index">{index}</span>
           {children}
         </div>
-        <Title className="mission-row-title">{title}</Title>
       </div>
     </section>
   );
@@ -117,9 +120,9 @@ export default function OurMission() {
         </figure>
       </Row>
 
-      <Row index="(05)" title={t('about.question.title')} tone="clay">
-        <p>{t('about.question.p1')}</p>
-        <p>
+      <Row index="(05)" title={t('about.question.title')} tone="clay" bodyClass="story-body">
+        <p className="story-context">{t('about.question.p1')}</p>
+        <p className="story-context">
           {t('about.question.p2')}
           <sup className="cite-ref">
             <a href="#cite-1" aria-label={t('about.question.ref', { n: 1 })}>1</a>{' '}
@@ -127,11 +130,11 @@ export default function OurMission() {
             <a href="#cite-3" aria-label={t('about.question.ref', { n: 3 })}>3</a>
           </sup>
         </p>
-        <p>{t('about.question.p3')}</p>
-        <p>{rich('about.question.p4')}</p>
-        <p>{t('about.question.p5')}</p>
-        <p>{t('about.question.p6')}</p>
-        <p>{rich('about.question.p7')}</p>
+        <p className="story-context">{t('about.question.p3')}</p>
+        <p className="story-question">{rich('about.question.p4')}</p>
+        <p className="story-insight">{t('about.question.p5')}</p>
+        <p className="story-context">{t('about.question.p6')}</p>
+        <p className="story-closing">{rich('about.question.p7')}</p>
 
         <ol className="citations">
           <li id="cite-1">
@@ -172,9 +175,9 @@ export default function OurMission() {
           <article className="person-card">
             <div className="person-photo">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/Photo/founders/Fabrizio_profile_photo.webp" alt="Fabrizio Colombo Fiore" />
+              <img src="/Photo/founders/Fabrizio_profile_photo.webp" alt="Fabrizio Colombo Fiore" width={984} height={1025} loading="lazy" decoding="async" />
             </div>
-            <h4 className="person-name">Fabrizio Colombo Fiore</h4>
+            <h3 className="person-name">Fabrizio Colombo Fiore</h3>
             <p className="person-role">{t('about.team.role')}</p>
             <p className="person-creds">{t('about.team.fabrizio.creds')}</p>
             <p className="person-note">{t('about.team.fabrizio.quote')}</p>
@@ -183,9 +186,9 @@ export default function OurMission() {
           <article className="person-card">
             <div className="person-photo">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/Photo/founders/Ammar-founder-photo.webp" alt="Ammar Sathar" />
+              <img src="/Photo/founders/Ammar-founder-photo.webp" alt="Ammar Sathar" width={900} height={900} loading="lazy" decoding="async" />
             </div>
-            <h4 className="person-name">Ammar Sathar</h4>
+            <h3 className="person-name">Ammar Sathar</h3>
             <p className="person-role">{t('about.team.role')}</p>
             <p className="person-creds">{t('about.team.ammar.creds')}</p>
           </article>

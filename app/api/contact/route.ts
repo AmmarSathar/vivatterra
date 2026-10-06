@@ -3,8 +3,14 @@ import { Resend } from 'resend';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+const INQUIRY_TYPES: Record<string, string> = {
+  buyer: 'Buyer / café / wellness business',
+  origin: 'Origin partner',
+  strategic: 'Strategic partner',
+};
+
 export async function POST(req: Request) {
-  let body: { name?: string; email?: string; message?: string };
+  let body: { name?: string; email?: string; message?: string; inquiryType?: string };
   try {
     body = await req.json();
   } catch {
@@ -14,6 +20,8 @@ export async function POST(req: Request) {
   const name = (body.name ?? '').trim();
   const email = (body.email ?? '').trim();
   const message = (body.message ?? '').trim();
+  // Optional audience selection from the Contact page; unknown values are ignored.
+  const inquiryType = INQUIRY_TYPES[body.inquiryType ?? ''] ?? '';
 
   if (!name || !email) {
     return NextResponse.json(
@@ -48,8 +56,8 @@ export async function POST(req: Request) {
       from,
       to,
       replyTo: email,
-      subject: `New contact form message from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message || '(no message)'}`,
+      subject: `New contact form message from ${name}${inquiryType ? ` (${inquiryType})` : ''}`,
+      text: `Name: ${name}\nEmail: ${email}${inquiryType ? `\nInquiry type: ${inquiryType}` : ''}\n\nMessage:\n${message || '(no message)'}`,
     });
 
     if (error) {

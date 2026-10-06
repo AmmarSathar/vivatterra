@@ -7,7 +7,7 @@ import { useI18n } from '@/lib/i18n';
 export default function Hero() {
   const { t } = useI18n();
   const wordRef  = useRef<HTMLImageElement>(null);
-  const tagRef   = useRef<HTMLParagraphElement>(null);
+  const tagRef   = useRef<HTMLSpanElement>(null);
   const arrowRef = useRef<HTMLDivElement>(null);
 
   // Entrance animation
@@ -51,6 +51,8 @@ export default function Hero() {
 
       {/* Centered wordmark */}
       <div className="hero-fs-content">
+        {/* The page's single H1: wordmark (alt text) plus tagline. display:contents keeps the layout identical. */}
+        <h1 className="hero-fs-title">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           ref={wordRef}
@@ -60,9 +62,10 @@ export default function Hero() {
           style={{ opacity: 0 }}
           draggable={false}
         />
-        <p ref={tagRef} className="hero-fs-tagline" style={{ opacity: 0 }}>
+        <span ref={tagRef} className="hero-fs-tagline" style={{ opacity: 0 }}>
           {t('hero.tagline')}
-        </p>
+        </span>
+        </h1>
       </div>
 
       {/* Scroll cue */}

@@ -39,7 +39,7 @@ function interpolate(str: string, vars?: Vars) {
   return str.replace(/\{(\w+)\}/g, (m, k) => (k in vars ? String(vars[k]) : m));
 }
 
-const TAG_RE = /<(b|i|fig|hl)>([\s\S]*?)<\/\1>/g;
+const TAG_RE = /<(b|i|fig|hl|ph)>([\s\S]*?)<\/\1>/g;
 
 function renderRich(str: string): ReactNode {
   const out: ReactNode[] = [];
@@ -53,6 +53,7 @@ function renderRich(str: string): ReactNode {
     if (m[1] === 'b') out.push(<strong key={key}>{inner}</strong>);
     else if (m[1] === 'i') out.push(<em key={key}>{inner}</em>);
     else if (m[1] === 'fig') out.push(<strong key={key} className="wa-fig">{inner}</strong>);
+    else if (m[1] === 'ph') out.push(<mark key={key} className="privacy-ph">{inner}</mark>);
     else out.push(<span key={key} className="wa-em">{inner}</span>);
     last = idx + m[0].length;
   }
@@ -60,11 +61,12 @@ function renderRich(str: string): ReactNode {
   return out.length === 1 && typeof out[0] === 'string' ? out[0] : <>{out}</>;
 }
 
-function routeMetaKey(pathname: string): 'home' | 'about' | 'contact' | 'carmen' | null {
+function routeMetaKey(pathname: string): 'home' | 'about' | 'contact' | 'carmen' | 'privacy' | null {
   if (pathname === '/') return 'home';
   if (pathname.startsWith('/about')) return 'about';
   if (pathname.startsWith('/contact')) return 'contact';
   if (pathname.startsWith('/carmen-pecha')) return 'carmen';
+  if (pathname.startsWith('/privacy')) return 'privacy';
   return null;
 }
 

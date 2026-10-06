@@ -1,59 +1,68 @@
 'use client';
 
-import { useReveal } from '@/hooks/useReveal';
+import { useCallback } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useReveal } from '@/hooks/useReveal';
+import { useI18n } from '@/lib/i18n';
 
-const SPECS = [
-  { k: 'Form',             v: 'Freeze-dried powder' },
-  { k: 'Ingredients',      v: '100% Wild açaí (Euterpe precatoria)' },
-  { k: 'Project Partner',  v: 'Samay O2 – Amazon Recovery' },
-  { k: 'Origin',           v: 'Ixiamas, TCO Tacana I, Amboró–Madidi corridor, Bolivia' },
-  { k: 'Processing',       v: 'Freeze-dried and pulverized close to origin, in Ixiamas, Bolivia' },
-  { k: 'Available format', v: '250 g bag' },
-  { k: 'Order quantity',   v: 'Flexible: choose the quantity that fits your volume' },
-  { k: 'Minimum order',    v: 'Contact us' },
-  { k: 'Pricing',          v: 'Contact us for current pricing' },
-];
+const COVER_MS = 850; // matches the header's page-transition cover
 
+// Contact page pathway for buyers / cafés / wellness businesses (preselects the inquiry type).
+const REGISTER_HREF = '/contact?inquiry=buyer';
+
+/**
+ * "What we are preparing to offer": a concise, transparent product card that
+ * sits between "Why Açaí?" and the closing call to action. It states what is
+ * known (origin), what is planned (format) and what is still being finalized
+ * (processing and packaging), and never presents the product as for sale.
+ */
 export default function ProductSpecs() {
-  const ref = useReveal();
+  const ref = useReveal<HTMLElement>();
+  const router = useRouter();
+  const { t } = useI18n();
+
+  const go = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        router.push(REGISTER_HREF);
+        return;
+      }
+      window.dispatchEvent(new CustomEvent('vt:cover'));
+      setTimeout(() => router.push(REGISTER_HREF), COVER_MS);
+    },
+    [router]
+  );
+
+  const specs = [
+    { k: t('prep.format.label'), v: t('prep.format.value') },
+    { k: t('prep.origin.label'), v: t('home.product.harvestedByValue') },
+    { k: t('prep.processing.label'), v: t('prep.processing.value') },
+  ];
 
   return (
-    <section ref={ref} className="section section-cream" id="product">
-      <div className="container">
-        <div className="product">
-          <div className="photo">
-            <div className="powder" />
-          </div>
+    <section ref={ref} className="prep-section" id="product">
+      <div className="prep-card">
+        <div className="prep-main">
+          <div className="prep-eyebrow">{t('prep.eyebrow')}</div>
+          <h2 className="prep-title">{t('prep.title')}</h2>
+          <p className="prep-status">{t('prep.status')}</p>
+          <p className="prep-intro">{t('prep.intro')}</p>
+        </div>
 
-          <div className="info">
-            <div className="eyebrow">First implementation</div>
-            <h3>Freeze-dried wild açaí powder</h3>
-            <p>
-              Wild açaí pulp is nearly 90% water. Through freeze-drying, the freshly harvested fruit is
-              frozen at extremely low temperatures before the ice is removed under vacuum through
-              sublimation. What remains is the fruit in its most concentrated form: pure, stable, and
-              shelf-ready.
-            </p>
-
-            <ul className="meta-list">
-              {SPECS.map(({ k, v }) => (
-                <li key={k}>
-                  <span className="k">{k}</span>
-                  <span className="v">{v}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-              <a href="mailto:hello@vivatterra.com" className="btn btn-warm">
-                Request a sample <span className="btn-arrow">→</span>
-              </a>
-              <Link href="/about" className="btn btn-secondary">
-                Why agroforestry
-              </Link>
-            </div>
-          </div>
+        <div className="prep-side">
+          <dl className="prep-specs">
+            {specs.map(({ k, v }) => (
+              <div key={k} className="prep-spec">
+                <dt>{k}</dt>
+                <dd>{v}</dd>
+              </div>
+            ))}
+          </dl>
+          <Link href={REGISTER_HREF} className="prep-cta" onClick={go}>
+            {t('prep.cta')} <span aria-hidden="true">→</span>
+          </Link>
         </div>
       </div>
     </section>
