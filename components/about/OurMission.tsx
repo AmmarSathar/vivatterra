@@ -17,12 +17,14 @@ function Row({
   title,
   tone,
   hero,
+  bodyClass,
   children,
 }: {
   index: string;
   title: ReactNode;
   tone: Tone;
   hero?: boolean;
+  bodyClass?: string;
   children: ReactNode;
 }) {
   const Title = hero ? 'h1' : 'h2';
@@ -31,7 +33,7 @@ function Row({
       <div className="mission-row-inner">
         {/* Title first in the DOM so headings read in order; the grid areas place it visually. */}
         <Title className="mission-row-title">{title}</Title>
-        <div className="mission-row-body">
+        <div className={`mission-row-body${bodyClass ? ` ${bodyClass}` : ''}`}>
           <span className="mission-row-index">{index}</span>
           {children}
         </div>
@@ -118,9 +120,9 @@ export default function OurMission() {
         </figure>
       </Row>
 
-      <Row index="(05)" title={t('about.question.title')} tone="clay">
-        <p>{t('about.question.p1')}</p>
-        <p>
+      <Row index="(05)" title={t('about.question.title')} tone="clay" bodyClass="story-body">
+        <p className="story-context">{t('about.question.p1')}</p>
+        <p className="story-context">
           {t('about.question.p2')}
           <sup className="cite-ref">
             <a href="#cite-1" aria-label={t('about.question.ref', { n: 1 })}>1</a>{' '}
@@ -128,11 +130,11 @@ export default function OurMission() {
             <a href="#cite-3" aria-label={t('about.question.ref', { n: 3 })}>3</a>
           </sup>
         </p>
-        <p>{t('about.question.p3')}</p>
-        <p>{rich('about.question.p4')}</p>
-        <p>{t('about.question.p5')}</p>
-        <p>{t('about.question.p6')}</p>
-        <p>{rich('about.question.p7')}</p>
+        <p className="story-context">{t('about.question.p3')}</p>
+        <p className="story-question">{rich('about.question.p4')}</p>
+        <p className="story-insight">{t('about.question.p5')}</p>
+        <p className="story-context">{t('about.question.p6')}</p>
+        <p className="story-closing">{rich('about.question.p7')}</p>
 
         <ol className="citations">
           <li id="cite-1">
