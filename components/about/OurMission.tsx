@@ -92,12 +92,37 @@ export default function OurMission() {
         <p>{t('about.work.body')}</p>
       </Row>
 
-      <Row index="(03)" title={t('about.problem.title')} tone="ink">
+      <Row index="(03)" title={t('about.team.title')} tone="cream">
+        <div className="people-grid">
+          <article className="person-card">
+            <div className="person-photo">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/Photo/founders/Fabrizio_profile_photo.webp" alt="Fabrizio Colombo Fiore" width={984} height={1025} loading="lazy" decoding="async" />
+            </div>
+            <h3 className="person-name">Fabrizio Colombo Fiore</h3>
+            <p className="person-role">{t('about.team.role')}</p>
+            <p className="person-creds">{t('about.team.fabrizio.creds')}</p>
+            <p className="person-note">{t('about.team.fabrizio.quote')}</p>
+          </article>
+
+          <article className="person-card">
+            <div className="person-photo">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/Photo/founders/Ammar-founder-photo.webp" alt="Ammar Sathar" width={900} height={900} loading="lazy" decoding="async" />
+            </div>
+            <h3 className="person-name">Ammar Sathar</h3>
+            <p className="person-role">{t('about.team.role')}</p>
+            <p className="person-creds">{t('about.team.ammar.creds')}</p>
+          </article>
+        </div>
+      </Row>
+
+      <Row index="(04)" title={t('about.problem.title')} tone="ink">
         <p>{t('about.problem.body')}</p>
       </Row>
 
       <Row
-        index="(04)"
+        index="(05)"
         title={
           <span className="title-long">
             <span>{t('about.agro.title1')}</span> <span>{t('about.agro.title2')}</span>{' '}
@@ -120,7 +145,7 @@ export default function OurMission() {
         </figure>
       </Row>
 
-      <Row index="(05)" title={t('about.question.title')} tone="clay" bodyClass="story-body">
+      <Row index="(06)" title={t('about.question.title')} tone="clay" bodyClass="story-body">
         <p className="story-context">{t('about.question.p1')}</p>
         <p className="story-context">
           {t('about.question.p2')}
@@ -168,31 +193,6 @@ export default function OurMission() {
             </a>
           </li>
         </ol>
-      </Row>
-
-      <Row index="(06)" title={t('about.team.title')} tone="sage">
-        <div className="people-grid">
-          <article className="person-card">
-            <div className="person-photo">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/Photo/founders/Fabrizio_profile_photo.webp" alt="Fabrizio Colombo Fiore" width={984} height={1025} loading="lazy" decoding="async" />
-            </div>
-            <h3 className="person-name">Fabrizio Colombo Fiore</h3>
-            <p className="person-role">{t('about.team.role')}</p>
-            <p className="person-creds">{t('about.team.fabrizio.creds')}</p>
-            <p className="person-note">{t('about.team.fabrizio.quote')}</p>
-          </article>
-
-          <article className="person-card">
-            <div className="person-photo">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/Photo/founders/Ammar-founder-photo.webp" alt="Ammar Sathar" width={900} height={900} loading="lazy" decoding="async" />
-            </div>
-            <h3 className="person-name">Ammar Sathar</h3>
-            <p className="person-role">{t('about.team.role')}</p>
-            <p className="person-creds">{t('about.team.ammar.creds')}</p>
-          </article>
-        </div>
       </Row>
 
     </div>
